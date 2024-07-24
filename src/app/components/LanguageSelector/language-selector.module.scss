@@ -1,0 +1,21 @@
+.LanguageSelector {
+  position: relative;
+}
+
+.LanguageSelectorButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.ArrowDown {
+  transition: transform 0.2s ease;
+
+  &.Open {
+    transform: rotate(180deg);
+  }
+}
