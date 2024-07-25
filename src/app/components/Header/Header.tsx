@@ -53,7 +53,7 @@ export const Header = () => {
   }, [isDesktop]);
 
   return (
-    <div>
+    <div className={classes.HeaderWrapper}>
       <div className={classes.HeaderPlaceholder}></div>
       <div className={classes.Header}>
         <Container className={classes.HeaderContent}>

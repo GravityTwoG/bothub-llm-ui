@@ -11,7 +11,11 @@
   border: none;
   box-shadow: 0 1px 1px 0 #fff6 inset;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+
+  transform: translateY(0);
 
   &:hover {
     background-color: var(--color-strong);
@@ -19,6 +23,7 @@
 
   &:active {
     background-color: var(--color-strong-down);
+    transform: translateY(1px);
   }
 
   &:disabled {
