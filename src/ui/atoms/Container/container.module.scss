@@ -2,4 +2,9 @@
   width: 100%;
   max-width: 1290px;
   margin: 0 auto;
+
+  @media (width <= calc(1290px + 40px)) {
+    max-width: 100%;
+    padding: 0 20px;
+  }
 }

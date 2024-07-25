@@ -15,6 +15,30 @@
   --color-text-disabled: #616d8d;
   --color-gray-2: var(--color-primary-disabled);
   --color-gray-3: #222b44;
+  --color-background: #000;
+  --font-size-h1: 46px;
+  --font-size-h2: 36px;
+  --font-size-h3: 24px;
+  --font-size-h4: 18px;
+  --font-size-h5: 16px;
+  --font-size-h6: 14px;
+  --font-weight-h1: 700;
+  --font-weight-h2: 600;
+  --font-weight-h3: 500;
+  --font-weight-h4: 400;
+  --font-weight-h5: 400;
+  --font-weight-h6: 400;
+  --line-height-h1: 60px;
+  --line-height-h2: 1.2;
+  --line-height-h3: 1.2;
+  --line-height-h4: 1.2;
+  --line-height-h5: 1.2;
+  --line-height-h6: 1.2;
+  --font-size-paragraph: 16px;
+  --font-weight-paragraph: 400;
+  --line-height-paragraph: 22px;
+  --screen-tablet: 1060px;
+  --screen-mobile: 670px;
 
   color-scheme: light dark;
   font-synthesis: none;
@@ -54,4 +78,5 @@
 body {
   font-weight: normal;
   font-family: "IBM Plex Sans", sans-serif;
+  background-color: var(--color-background);
 }
