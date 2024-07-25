@@ -59,9 +59,9 @@ export const Header = (props: HeaderProps) => {
       <div className={classes.HeaderPlaceholder}></div>
       <div className={classes.Header}>
         <Container className={classes.HeaderContent}>
-          <div className={classes.HeaderLogo}>
+          <a href="/" className={classes.HeaderLogo}>
             <Logo />
-          </div>
+          </a>
 
           <div className={classes.HeaderSeparator}></div>
 

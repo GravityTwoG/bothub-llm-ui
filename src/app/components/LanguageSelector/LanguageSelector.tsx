@@ -43,6 +43,15 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
           <li>
             <button>EN</button>
           </li>
+          <li>
+            <button>ES</button>
+          </li>
+          <li>
+            <button>FR</button>
+          </li>
+          <li>
+            <button>PT</button>
+          </li>
         </ul>
       )}
     </div>

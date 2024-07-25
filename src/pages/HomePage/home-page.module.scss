@@ -154,7 +154,7 @@
 
 .ExtraFeatureSection {
   display: flex;
-  gap: 100px;
+  gap: 80px;
   align-items: center;
   justify-content: space-between;
   margin-top: 86px;
@@ -187,10 +187,10 @@
 }
 
 .ExtraFeatureSectionText {
-  display: flex;
   flex: 1;
+  max-width: 54ch;
+  display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: start;
-  max-width: 50ch;
 }

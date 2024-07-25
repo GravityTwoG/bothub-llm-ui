@@ -1,0 +1,134 @@
+.Footer {
+  background: radial-gradient(
+    40% 80% at 50% -20%,
+    rgba(28, 100, 242, 40%) 0%,
+    rgb(18, 24, 37) 100%
+  );
+
+  @media (max-width: 1060px) {
+    background: radial-gradient(
+      40% 50% at 50% -20%,
+      rgba(28, 100, 242, 40%) 0%,
+      rgb(18, 24, 37) 100%
+    );
+  }
+}
+
+.FooterContent {
+  padding-top: 64px;
+  padding-bottom: 64px;
+
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 46px;
+
+  @media (max-width: 1060px) {
+    flex-direction: column;
+    padding-top: 57px;
+    padding-bottom: 57px;
+
+    .Law p {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .Title {
+      margin-bottom: 18px;
+    }
+
+    .Links {
+      gap: 18px;
+    }
+  }
+
+  @media (max-width: 670px) {
+    gap: 38px;
+    padding-top: 43px;
+    padding-bottom: 43px;
+
+    .Columns {
+      flex-direction: column;
+    }
+
+    .Title {
+      margin-bottom: 14px;
+    }
+
+    .Links {
+      gap: 14px;
+    }
+  }
+}
+
+.Copyrights {
+  .Logo {
+    margin-bottom: 20px;
+  }
+
+  .Law {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    p {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 500;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color-text);
+    }
+  }
+
+  .Association {
+    width: 87px;
+  }
+}
+
+.Columns {
+  flex: 1;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  list-style: none;
+  width: 100%;
+}
+
+.Title {
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--color-gray-1);
+}
+
+.Links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
