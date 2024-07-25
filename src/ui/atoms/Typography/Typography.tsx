@@ -39,15 +39,15 @@ export const H6 = (props: H6Props) => {
   return <h6 {...props} className={clsx(classes.H6, props.className)} />;
 };
 
-export type ParagraphProps = HTMLComponentsProps<'p'> & {
-  fontWeight?: 'normal' | 'bold' | 'medium';
-};
-
 const fontWeightMap = {
   normal: 'FontWeightNormal',
   medium: 'FontWeightMedium',
   semibold: 'FontWeightSemibold',
   bold: 'FontWeightBold',
+};
+
+export type ParagraphProps = HTMLComponentsProps<'p'> & {
+  fontWeight?: 'normal' | 'bold' | 'medium' | 'semibold';
 };
 
 export const Paragraph = ({
