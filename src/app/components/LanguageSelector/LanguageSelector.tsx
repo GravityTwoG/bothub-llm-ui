@@ -23,6 +23,17 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
           className={clsx(classes.ArrowDown, isOpen && classes.Open)}
         />
       </button>
+
+      {isOpen && (
+        <ul className={classes.LanguageSelectorDropdown}>
+          <li>
+            <button>RU</button>
+          </li>
+          <li>
+            <button>EN</button>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };
