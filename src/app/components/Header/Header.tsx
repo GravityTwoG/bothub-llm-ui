@@ -1,9 +1,9 @@
-import { ReactNode, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from '@uidotdev/usehooks';
 
 import classes from './header.module.scss';
 
 import Logo from '@/ui/icons/Logo.svg?react';
-import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
 import Telegram from '@/ui/icons/Telegram.svg?react';
 import Bag from '@/ui/icons/Bag.svg?react';
 
@@ -11,12 +11,49 @@ import { Button } from '@/ui/atoms/Button/Button';
 import { Container } from '@/ui/atoms/Container/Container';
 
 import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
-import { clsx } from 'clsx';
-import { useClickAway } from '@uidotdev/usehooks';
+import { BurgerButton } from '@/ui/atoms/Button/BurgerButton';
+import { HeaderNav } from './HeaderNav/HeaderNav';
+import { MobileNav } from './MobileNav/MobileNav';
+
+const navItems = [
+  {
+    link: '#',
+    title: 'Продукты',
+    subNavItems: [
+      {
+        link: '#',
+        icon: <Telegram />,
+        title: 'Телеграм боты',
+        description: 'Удобный бот телеграм, который всегда под рукой',
+      },
+      {
+        link: '#',
+        icon: <Bag />,
+        title: 'Для бизнеса',
+        description: 'Корпоративная подписка для юридических лиц',
+      },
+    ],
+  },
+  { link: '#', title: 'Пакеты' },
+  { link: '#', title: 'API' },
+  { link: '#', title: 'Блог' },
+];
 
 export type HeaderProps = {};
 
 export const Header = (props: HeaderProps) => {
+  const isDesktop = useMediaQuery('(min-width: 1061px)');
+  const isTabletOrDesktop = useMediaQuery('(min-width: 671px)');
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  // close mobile nav on desktop
+  useEffect(() => {
+    if (isDesktop) {
+      setIsOpen(false);
+    }
+  }, [isDesktop]);
+
   return (
     <div>
       <div className={classes.HeaderPlaceholder}></div>
@@ -28,113 +65,35 @@ export const Header = (props: HeaderProps) => {
 
           <div className={classes.HeaderSeparator}></div>
 
-          <nav className={classes.HeaderNav}>
-            <ul>
-              <NavItem
-                subNavItems={[
-                  <SubNavItem
-                    link="#"
-                    icon={<Telegram />}
-                    title="Телеграм боты"
-                    description="Удобный бот телеграм, который всегда под рукой"
-                  />,
-                  <SubNavItem
-                    link="#"
-                    icon={<Bag />}
-                    title="Для бизнеса"
-                    description="Корпоративная подписка для юридических лиц"
-                  />,
-                ]}
-              >
-                Продукты
-              </NavItem>
-              <NavItem link="#">Пакеты</NavItem>
-              <NavItem link="#">API</NavItem>
-              <NavItem link="#">Блог</NavItem>
-            </ul>
-          </nav>
+          {isDesktop && <HeaderNav navItems={navItems} />}
 
           <div className={classes.HeaderActions}>
             <div className={classes.LanguageSelector}>
               <LanguageSelector />
             </div>
 
-            <div className={classes.HeaderActionItem}>
-              <Button>Авторизация</Button>
-            </div>
+            {isTabletOrDesktop && (
+              <div className={classes.HeaderActionItem}>
+                <Button>Авторизация</Button>
+              </div>
+            )}
+
+            {!isDesktop && (
+              <>
+                <div className={classes.HeaderActionItem}>
+                  <BurgerButton
+                    isOpen={isOpen}
+                    onClick={() => setIsOpen(!isOpen)}
+                  />
+                </div>
+                <MobileNav navItems={navItems} isOpen={isOpen}>
+                  {!isTabletOrDesktop && <Button>Авторизация</Button>}
+                </MobileNav>
+              </>
+            )}
           </div>
         </Container>
       </div>
     </div>
-  );
-};
-
-type NavItemProps = {
-  children: ReactNode;
-  link?: string;
-  subNavItems?: ReactNode[];
-};
-
-const NavItem = (props: NavItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const buttonId = useId();
-
-  const ref = useClickAway<HTMLUListElement>((e) => {
-    if (e.target instanceof HTMLElement || e.target instanceof SVGElement) {
-      const button = e.target.closest(`.${classes.NavItemWithSubNav}`);
-      if (button && button.id === buttonId) {
-        return;
-      }
-    }
-
-    setIsOpen(false);
-  });
-
-  return (
-    <li className={classes.NavItemWrapper}>
-      <div
-        id={buttonId}
-        role={props.subNavItems ? 'button' : undefined}
-        onClick={() => props.subNavItems && setIsOpen(!isOpen)}
-        className={clsx(
-          classes.NavItem,
-          props.subNavItems && classes.NavItemWithSubNav
-        )}
-      >
-        {props.subNavItems ? (
-          <span>{props.children}</span>
-        ) : (
-          <a href={props.link}>{props.children}</a>
-        )}
-        {props.subNavItems ? <ArrowDown className={classes.ArrowDown} /> : null}
-      </div>
-
-      {props.subNavItems !== undefined && isOpen && (
-        <ul className={classes.SubNav} ref={ref}>
-          {props.subNavItems.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
-        </ul>
-      )}
-    </li>
-  );
-};
-
-type SubNavItemProps = {
-  icon?: ReactNode;
-  title: ReactNode;
-  description: ReactNode;
-  link: string;
-};
-
-const SubNavItem = (props: SubNavItemProps) => {
-  return (
-    <a href={props.link} className={classes.SubNavItem}>
-      <div className={classes.SubNavItemIcon}>{props.icon}</div>
-      <div>
-        <p className={classes.SubNavItemTitle}>{props.title}</p>
-        <p className={classes.SubNavItemDescription}>{props.description}</p>
-      </div>
-    </a>
   );
 };
