@@ -3,12 +3,12 @@
   max-width: 1290px;
   margin: 0 auto;
 
-  @media (max-width: calc(1290px + 80px)) {
+  @media (width <= calc(1290px + 80px)) {
     max-width: 100%;
     padding: 0 40px;
   }
 
-  @media (max-width: calc(670px + 32px)) {
+  @media (width <= calc(670px + 32px)) {
     padding: 0 16px;
   }
 }

@@ -1,7 +1,9 @@
-import { Container } from '@/ui/atoms/Container/Container';
 import classes from './home-page.module.scss';
+
+import { Container } from '@/ui/atoms/Container/Container';
 import { Button } from '@/ui/atoms/Button/Button';
 import { H1, H2, Paragraph } from '@/ui/atoms/Typography/Typography';
+import MidjourneyGenerated from '@/ui/assets/images/MidjourneyGenerated.png';
 
 export type HomePageProps = {};
 
@@ -11,6 +13,8 @@ export const HomePage = (props: HomePageProps) => {
       <HeroSection />
 
       <FeaturesSection />
+
+      <ExtraFeatureSection />
     </div>
   );
 };
@@ -26,7 +30,7 @@ const HeroSection = () => {
             Без VPN и абонентской платы. Создавайте контент, обрабатывайте
             данные и получайте ответы на вопросы через удобный интерфейс!
           </Paragraph>
-          <Button>Начать работу</Button>
+          <Button size="md">Начать работу</Button>
         </div>
         <div className={classes.HeroSectionImage}></div>
       </Container>
@@ -97,9 +101,30 @@ const FeatureItem = ({
   return (
     <li className={classes.FeatureItem}>
       <div className={classes.FeatureItemTitle}>{title}</div>
-      <Paragraph className={classes.FeatureItemDescription}>
-        {description}
-      </Paragraph>
+      <Paragraph>{description}</Paragraph>
     </li>
+  );
+};
+
+const ExtraFeatureSection = () => {
+  return (
+    <Container className={classes.ExtraFeatureSection}>
+      <img
+        src={MidjourneyGenerated}
+        className={classes.ExtraFeatureSectionImage}
+        alt=""
+      />
+      <div className={classes.ExtraFeatureSectionText}>
+        <H2>Генерация Изображений Через Midjourney</H2>
+        <Paragraph>
+          MidJourney - инструмент для создания уникальных изображений. Наши
+          алгоритмы помогут вам воплотить в жизнь вашу идею. Начните
+          генерировать изображения с MidJourney прямо сейчас! Кликните на кнопку
+          ниже, чтобы начать творить.
+        </Paragraph>
+
+        <Button>Попробовать Midjourney</Button>
+      </div>
+    </Container>
   );
 };

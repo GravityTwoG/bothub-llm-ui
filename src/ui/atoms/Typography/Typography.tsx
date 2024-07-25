@@ -45,8 +45,9 @@ export type ParagraphProps = HTMLComponentsProps<'p'> & {
 
 const fontWeightMap = {
   normal: 'FontWeightNormal',
-  bold: 'FontWeightBold',
   medium: 'FontWeightMedium',
+  semibold: 'FontWeightSemibold',
+  bold: 'FontWeightBold',
 };
 
 export const Paragraph = ({

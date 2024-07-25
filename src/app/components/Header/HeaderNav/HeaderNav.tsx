@@ -5,6 +5,7 @@ import { clsx } from 'clsx';
 import classes from './header-nav.module.scss';
 
 import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
+import { Paragraph } from '@/ui/atoms/Typography/Typography';
 
 export type NavItemType = {
   link?: string;
@@ -76,9 +77,11 @@ const NavItem = (props: NavItemProps) => {
         )}
       >
         {props.subNavItems ? (
-          <span>{props.children}</span>
+          <Paragraph fontWeight="semibold">{props.children}</Paragraph>
         ) : (
-          <a href={props.link}>{props.children}</a>
+          <a href={props.link}>
+            <Paragraph fontWeight="semibold">{props.children}</Paragraph>
+          </a>
         )}
         {props.subNavItems ? <ArrowDown className={classes.ArrowDown} /> : null}
       </div>
