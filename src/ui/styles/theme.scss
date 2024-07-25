@@ -11,50 +11,47 @@
   --color-strong: #073ca4;
   --color-strong-down: #0e3176;
   --color-primary-disabled: #313e62;
-
-  --color-text: #ffffff;
+  --color-text: #fff;
   --color-text-disabled: #616d8d;
-
   --color-gray-2: var(--color-primary-disabled);
   --color-gray-3: #222b44;
 
   color-scheme: light dark;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
-  font-family: 'IBM Plex Sans';
   font-weight: 700;
+  font-family: "IBM Plex Sans";
   font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Bold.ttf') format('truetype');
+  src: url("../fonts/IBM Plex Sans/IBMPlexSans-Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'IBM Plex Sans';
   font-weight: 600;
+  font-family: "IBM Plex Sans";
   font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-SemiBold.ttf') format('truetype');
+  src: url("../fonts/IBM Plex Sans/IBMPlexSans-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'IBM Plex Sans';
   font-weight: 500;
+  font-family: "IBM Plex Sans";
   font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Medium.ttf') format('truetype');
+  src: url("../fonts/IBM Plex Sans/IBMPlexSans-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'IBM Plex Sans';
   font-weight: 400;
+  font-family: "IBM Plex Sans";
   font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Regular.ttf') format('truetype');
+  src: url("../fonts/IBM Plex Sans/IBMPlexSans-Regular.ttf") format("truetype");
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: normal;
+  font-family: "IBM Plex Sans", sans-serif;
 }
