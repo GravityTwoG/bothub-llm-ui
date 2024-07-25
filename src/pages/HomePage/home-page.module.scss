@@ -24,6 +24,7 @@
   }
 
   @media (width <= 1060px) {
+    padding-top: 56px;
     &::before {
       background-size: cover;
     }
