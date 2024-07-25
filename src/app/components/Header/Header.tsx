@@ -39,9 +39,7 @@ const navItems = [
   { link: '#', title: 'Блог' },
 ];
 
-export type HeaderProps = {};
-
-export const Header = (props: HeaderProps) => {
+export const Header = () => {
   const isDesktop = useMediaQuery('(min-width: 1061px)');
   const isTabletOrDesktop = useMediaQuery('(min-width: 671px)');
 

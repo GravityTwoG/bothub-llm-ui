@@ -6,9 +6,7 @@ import { useState } from 'react';
 import { clsx } from 'clsx';
 import { useClickAway } from '@uidotdev/usehooks';
 
-export type LanguageSelectorProps = {};
-
-export const LanguageSelector = (props: LanguageSelectorProps) => {
+export const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const ref = useClickAway<HTMLUListElement>((e) => {

@@ -5,9 +5,7 @@ import { Button } from '@/ui/atoms/Button/Button';
 import { H1, H2, Paragraph } from '@/ui/atoms/Typography/Typography';
 import MidjourneyGenerated from '@/ui/assets/images/MidjourneyGenerated.png';
 
-export type HomePageProps = {};
-
-export const HomePage = (props: HomePageProps) => {
+export const HomePage = () => {
   return (
     <div className={classes.HomePage}>
       <HeroSection />
