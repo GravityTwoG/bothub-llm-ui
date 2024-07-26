@@ -94,36 +94,21 @@
   gap: 10px;
   padding: 24px;
   list-style: none;
-  background-clip: padding-box;
+  background:
+    radial-gradient(
+        100% 100% at -30% -50%,
+        rgb(28 100 242 / 18%) 9%,
+        rgb(18 24 37) 100%
+      )
+      padding-box,
+    radial-gradient(
+        100% 100% at 20% 0%,
+        rgb(28 100 242 / 100%) 0%,
+        rgb(0 0 0 / 0%) 100%
+      )
+      border-box;
   border: 1px solid transparent;
   border-radius: 12px;
-
-  &::before {
-    position: absolute;
-    z-index: -1;
-    margin: -1px;
-    background: radial-gradient(
-      100% 100% at 20% 0%,
-      rgb(28 100 242 / 100%) 0%,
-      rgb(0 0 0 / 0%) 100%
-    );
-    border-radius: inherit;
-    content: '';
-    inset: 0;
-  }
-
-  &::after {
-    position: absolute;
-    z-index: 0;
-    background: radial-gradient(
-      100% 100% at -30% -50%,
-      rgb(28 100 242 / 18%) 9%,
-      rgb(18 24 37) 100%
-    );
-    border-radius: inherit;
-    content: '';
-    inset: 0;
-  }
 
   & > * {
     z-index: 1;
