@@ -26,7 +26,7 @@ export const LanguageSelector = () => {
         type="button"
         className={classes.LanguageSelectorButton}
       >
-        <Globus />
+        <Globus className={classes.Globus} />
         <span>RU</span>
         <ArrowDown
           className={clsx(classes.ArrowDown, isOpen && classes.Open)}

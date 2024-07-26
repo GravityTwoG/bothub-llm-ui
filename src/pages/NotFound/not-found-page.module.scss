@@ -1,13 +1,12 @@
 .NotFoundPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 100%;
   min-height: 100vh;
   min-height: calc(100vh - var(--header-height));
   padding-top: 20px;
   overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
 }

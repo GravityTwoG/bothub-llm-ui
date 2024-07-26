@@ -74,8 +74,8 @@ export const Paragraph = ({
   );
 };
 
-export type CodeProps = HTMLComponentsProps<'pre'>;
+export type CodeProps = HTMLComponentsProps<'code'>;
 
 export const Code = (props: CodeProps) => {
-  return <pre {...props} className={clsx(classes.Code, props.className)} />;
+  return <code {...props} className={clsx(classes.Code, props.className)} />;
 };

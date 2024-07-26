@@ -9,6 +9,27 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: color 0.2s ease;
+
+  & .Globus path {
+    transition: fill 0.2s ease;
+  }
+
+  & .ArrowDown path {
+    transition: stroke 0.2s ease;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+
+    & .Globus path {
+      fill: var(--color-primary);
+    }
+
+    & .ArrowDown path {
+      stroke: var(--color-primary);
+    }
+  }
 }
 
 .ArrowDown {

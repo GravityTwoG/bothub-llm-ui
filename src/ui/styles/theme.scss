@@ -9,45 +9,60 @@
 }
 
 :root {
+  /* colors */
   --color-primary: #1c64f2;
   --color-strong: #073ca4;
   --color-strong-down: #0e3176;
   --color-primary-disabled: #313e62;
   --color-text: #fff;
   --color-text-disabled: #616d8d;
-
   --color-danger: #f2401c;
-
   --color-gray-1: #616d8d;
   --color-gray-2: var(--color-primary-disabled);
   --color-gray-3: #222b44;
   --color-gray-4: #121825;
-
   --color-background: #000;
 
+  /* typography */
+  /* h1 */
   --font-size-h1: 46px;
   --font-weight-h1: 700;
   --line-height-h1: 60px;
+
+  /* h2 */
   --font-size-h2: 34px;
   --font-weight-h2: 600;
   --line-height-h2: 44px;
+
+  /* h3 */
   --font-size-h3: 24px;
   --font-weight-h3: 500;
   --line-height-h3: 1.2;
+
+  /* h4 */
   --font-size-h4: 18px;
   --font-weight-h4: 400;
   --line-height-h4: 1.2;
+
+  /* h5 */
   --font-size-h5: 16px;
   --font-weight-h5: 400;
   --line-height-h5: 1.2;
+
+  /* h6 */
   --line-height-h6: 1.2;
   --font-size-h6: 14px;
   --font-weight-h6: 400;
+
+  /* paragraph */
   --font-size-paragraph: 16px;
   --font-weight-paragraph: 400;
   --line-height-paragraph: 22px;
+
+  /* paragraph-sm */
   --font-size-paragraph-sm: 14px;
   --line-height-paragraph-sm: 18px;
+
   --screen-tablet: 1060px;
   --screen-mobile: 670px;
 
@@ -124,24 +139,20 @@ body {
   --safari-fix: ; /* This custom property forces Safari to re-render the scrollbars on hover */
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  background-color: transparent;
-  width: 5px;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
 /* background of the scrollbar except button or resizer */
 .custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background-color: transparent;
 }
 
 /* scrollbar itself */
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border-radius: 16px;
   border: 1px solid transparent;
+  border-radius: 16px;
 }
 
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {

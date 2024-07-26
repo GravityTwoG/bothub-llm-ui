@@ -69,10 +69,10 @@
 .Code {
   display: block;
   padding: 8px;
+  overflow-x: auto;
+  font-size: var(--font-size-paragraph-sm);
+  font-family: monospace;
+  line-height: var(--line-height-paragraph-sm);
   background: var(--color-gray-4);
   border-radius: 10px;
-  overflow-x: auto;
-  font-family: monospace;
-  font-size: var(--font-size-paragraph-sm);
-  line-height: var(--line-height-paragraph-sm);
 }
