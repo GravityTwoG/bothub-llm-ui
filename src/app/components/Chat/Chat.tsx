@@ -1,4 +1,4 @@
-import { memo, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { clsx } from 'clsx';
 
 import classes from './chat.module.scss';
@@ -12,8 +12,7 @@ import { Button } from '@/ui/atoms/Button/Button';
 
 import ChatAvatar from '@/ui/assets/images/ChatAvatar.svg?react';
 import Send from '@/ui/icons/Send.svg?react';
-import User from '@/ui/icons/User.svg?react';
-import Gemini from '@/ui/icons/Gemini.svg?react';
+import { Message } from './Message';
 
 const defaultMessages: MessageType[] = [
   { role: 'user', content: 'Привет бот.', id: crypto.randomUUID() },
@@ -109,31 +108,6 @@ export const Chat = () => {
     </div>
   );
 };
-
-const Message = memo(({ message, user }: { message: string; user: string }) => {
-  return (
-    <li
-      className={clsx(
-        classes.ChatMessage,
-        user === 'Bot' && classes.ChatMessageBot
-      )}
-    >
-      <div className={classes.ChatMessageAvatar}>
-        {user === 'Bot' ? <Gemini /> : <User />}
-      </div>
-
-      <div className={classes.ChatMessageContent}>
-        <Paragraph size="sm" className={classes.ChatMessageUser}>
-          {user === 'Bot' ? 'Gemini' : ''}
-        </Paragraph>
-
-        <Paragraph size="sm" className={classes.ChatMessageText}>
-          {message}
-        </Paragraph>
-      </div>
-    </li>
-  );
-});
 
 type ChatFormProps = {
   input: string;
