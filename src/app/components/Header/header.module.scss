@@ -1,7 +1,7 @@
 .HeaderWrapper {
   --header-height: 80px;
 
-  @media (max-width: 670px) {
+  @media (width <= 670px) {
     --header-height: 70px;
   }
 }

@@ -6,7 +6,8 @@
 .HeroSection {
   position: relative;
   padding-top: 120px;
-  padding-bottom: 14px;
+  padding-bottom: 100px;
+  overflow: hidden;
 
   &::before {
     position: absolute;
@@ -15,16 +16,17 @@
     z-index: 0;
     width: 100%;
     height: 100%;
-    background-image: url('@/ui/assets/images/Grid.svg');
+    background-image: url("@/ui/assets/images/Grid.svg");
     background-repeat: repeat-x;
     background-position: center center;
     background-size: contain;
     opacity: 0.35;
-    content: '';
+    content: "";
   }
 
   @media (width <= 1060px) {
     padding-top: 56px;
+
     &::before {
       background-size: cover;
     }
@@ -56,16 +58,6 @@
   @media (width <= 1060px) {
     text-align: center;
   }
-}
-
-.HeroSectionImage {
-  height: 590px;
-  background-color: var(--color-primary);
-  border-radius: 24px;
-}
-
-.FeaturesSection {
-  margin-top: 86px;
 }
 
 .FeaturesSectionTitle {
@@ -173,10 +165,10 @@
 }
 
 .ExtraFeatureSectionText {
-  flex: 1;
-  max-width: 54ch;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px;
   align-items: start;
+  max-width: 54ch;
 }

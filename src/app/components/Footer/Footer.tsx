@@ -115,10 +115,10 @@ export const Footer = () => {
           <Logo className={classes.Logo} />
 
           <div className={classes.Law}>
-            <p>ООО «Ботхаб» ОГРН 1236300016259</p>
-            <p>@BotHub 2023</p>
+            <Paragraph size="sm">ООО «Ботхаб» ОГРН 1236300016259</Paragraph>
+            <Paragraph size="sm">@BotHub 2023</Paragraph>
             <a href="">
-              <p>Пользовательское соглашение</p>
+              <Paragraph size="sm">Пользовательское соглашение</Paragraph>
             </a>
           </div>
           <img
@@ -130,12 +130,17 @@ export const Footer = () => {
 
         <ul className={classes.Columns}>
           {columns.map((column) => (
-            <li className={classes.Column}>
+            <li className={classes.Column} key={column.title}>
               <div className={classes.Title}>{column.title}</div>
 
               <div className={classes.Links}>
                 {column.links.map((link) => (
-                  <a href={link.link} target="_blank" rel="noreferrer">
+                  <a
+                    href={link.link}
+                    key={link.title}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {link.icon}
                     <Paragraph>{link.title}</Paragraph>
                   </a>

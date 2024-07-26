@@ -1,38 +1,32 @@
 .Footer {
   background: radial-gradient(
     40% 80% at 50% -20%,
-    rgba(28, 100, 242, 40%) 0%,
-    rgb(18, 24, 37) 100%
+    rgb(28 100 242 / 40%) 0%,
+    rgb(18 24 37) 100%
   );
 
-  @media (max-width: 1060px) {
+  @media (width <= 1060px) {
     background: radial-gradient(
       40% 50% at 50% -20%,
-      rgba(28, 100, 242, 40%) 0%,
-      rgb(18, 24, 37) 100%
+      rgb(28 100 242 / 40%) 0%,
+      rgb(18 24 37) 100%
     );
   }
 }
 
 .FooterContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 46px;
+  align-items: start;
+  justify-content: space-between;
   padding-top: 64px;
   padding-bottom: 64px;
 
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 46px;
-
-  @media (max-width: 1060px) {
+  @media (width <= 1060px) {
     flex-direction: column;
     padding-top: 57px;
     padding-bottom: 57px;
-
-    .Law p {
-      font-size: 12px;
-      line-height: 16px;
-    }
 
     .Title {
       margin-bottom: 18px;
@@ -43,7 +37,7 @@
     }
   }
 
-  @media (max-width: 670px) {
+  @media (width <= 670px) {
     gap: 38px;
     padding-top: 43px;
     padding-bottom: 43px;
@@ -74,14 +68,12 @@
     margin-bottom: 12px;
 
     p {
-      font-size: 14px;
-      line-height: 18px;
       font-weight: 500;
     }
 
     a {
-      text-decoration: none;
       color: var(--color-text);
+      text-decoration: none;
 
       &:hover {
         color: var(--color-primary);
@@ -95,22 +87,22 @@
 }
 
 .Columns {
-  flex: 1;
   display: flex;
-  align-items: start;
-  justify-content: space-between;
+  flex: 1;
   flex-wrap: wrap;
   gap: 40px;
-  list-style: none;
+  align-items: start;
+  justify-content: space-between;
   width: 100%;
+  list-style: none;
 }
 
 .Title {
   margin-bottom: 20px;
+  color: var(--color-gray-1);
+  font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  font-weight: 600;
-  color: var(--color-gray-1);
 }
 
 .Links {
@@ -118,10 +110,10 @@
   flex-direction: column;
   gap: 20px;
 
-  a {
+  & a {
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
     color: var(--color-text);
     text-decoration: none;
     transition: color 0.2s ease-in-out;

@@ -40,6 +40,16 @@
   line-height: var(--line-height-paragraph);
 }
 
+.ParagraphSizeMd {
+  font-size: var(--font-size-paragraph);
+  line-height: var(--line-height-paragraph);
+}
+
+.ParagraphSizeSm {
+  font-size: var(--font-size-paragraph-sm);
+  line-height: var(--line-height-paragraph-sm);
+}
+
 .FontWeightNormal {
   font-weight: 400;
 }

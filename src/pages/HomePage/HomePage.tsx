@@ -4,6 +4,7 @@ import { Container } from '@/ui/atoms/Container/Container';
 import { Button } from '@/ui/atoms/Button/Button';
 import { H1, H2, Paragraph } from '@/ui/atoms/Typography/Typography';
 import MidjourneyGenerated from '@/ui/assets/images/MidjourneyGenerated.png';
+import { Chat } from '@/app/components/Chat/Chat';
 
 export const HomePage = () => {
   return (
@@ -30,7 +31,9 @@ const HeroSection = () => {
           </Paragraph>
           <Button size="md">Начать работу</Button>
         </div>
-        <div className={classes.HeroSectionImage}></div>
+        <div>
+          <Chat />
+        </div>
       </Container>
     </div>
   );

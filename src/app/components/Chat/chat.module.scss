@@ -1,0 +1,287 @@
+.ChatWrapper {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    top: -75px;
+    right: 0;
+    z-index: -1;
+    width: 140%;
+    height: 600px;
+    background: radial-gradient(
+      240% 220% at 60% 50%,
+      rgba(#103fe7, 90%) 0%,
+      rgba(#103fe7, 0%) 25%
+    );
+    content: "";
+  }
+
+  &::after {
+    position: absolute;
+    top: -200px;
+    left: 20%;
+    z-index: -1;
+    width: 110%;
+    height: 800px;
+    background: radial-gradient(
+      180% 200% at 45% 55%,
+      rgba(#ff1ee8, 50%) 0%,
+      rgba(#ff1ee8, 0%) 22%
+    );
+    content: "";
+  }
+}
+
+.Chat {
+  --deg: 0deg;
+
+  background:
+    linear-gradient(var(--color-gray-4), var(--color-gray-4)) padding-box,
+    linear-gradient(
+        var(--deg),
+        rgba(#e11cf2, 0%) 0%,
+        #ba1cf2 33%,
+        #1c64f2 67%,
+        rgba(#1c64f2, 0%) 100%
+      )
+      border-box,
+    linear-gradient(-180deg, #363f54 15%, rgb(0 0 0 / 0%) 100%) border-box;
+  border: 1px solid transparent;
+  border-radius: 24px;
+}
+
+.ChatHeader {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 24px;
+  border-bottom: 1px solid #374151;
+
+  .ChatIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .UserType {
+    color: var(--color-gray-1);
+  }
+
+  .ChatSettings {
+    position: relative;
+    margin-left: auto;
+
+    & label {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    & label::after {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: var(--color-gray-3);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 12px 10px;
+      border: 1px solid var(--color-gray-1);
+      border-radius: 2px;
+      content: "";
+    }
+
+    & input:checked + label::after {
+      background-color: var(--color-primary);
+      background-image: url("@/ui/icons/Check.svg");
+      border-color: var(--color-primary);
+    }
+
+    & input {
+      position: absolute;
+      z-index: -1;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+  }
+
+  /* gradient line */
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 49px;
+    z-index: 1;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(#1c64f2, 0%) 0%,
+      #1c64f2 51%,
+      rgba(#1c64f2, 0%) 100%
+    );
+    content: "";
+  }
+
+  /* gradient line */
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    z-index: 1;
+    width: 20%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(#e11cf2, 0%) 0%,
+      #ba1cf2 51%,
+      rgba(#e11cf2, 0%) 100%
+    );
+    content: "";
+  }
+}
+
+.ChatContent {
+  position: relative;
+  padding-bottom: 24px;
+  overflow: hidden;
+  border-radius: 24px;
+
+  & .ChatMessages,
+  & .ChatForm {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* gradient blob */
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 360px;
+    height: 260px;
+    background: radial-gradient(
+        80% 110% at 10% 120%,
+        rgba(#1c64f2, 100%) 0%,
+        rgba(#1c64f2, 0%) 71%
+      ),
+      radial-gradient(
+        50% 90% at 55% 120%,
+        rgba(#db01ff, 70%) 0%,
+        rgba(#db01ff, 0%) 71%
+      );
+    opacity: 0.7;
+    content: "";
+  }
+}
+
+.ChatMessages {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: end;
+  justify-content: flex-start;
+  min-height: 395px;
+  max-height: calc(100vh - 300px);
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding-right: 24px;
+  padding-left: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+
+.ChatMessage {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  align-items: start;
+  align-self: end;
+  justify-content: flex-start;
+  width: max-content;
+
+  & .ChatMessageAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-top: auto;
+    background: var(--color-gray-3);
+    border-radius: 50%;
+  }
+
+  & .ChatMessageContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  & .ChatMessageText {
+    padding: 14px 16px;
+    background: var(--color-primary);
+    border-radius: 10px 10px 0;
+  }
+}
+
+.ChatMessageBot {
+  flex-direction: row;
+  align-self: start;
+
+  & .ChatMessageText {
+    background: var(--color-gray-2);
+    border-radius: 10px 10px 10px 0;
+  }
+}
+
+.ChatForm {
+  display: flex;
+  gap: 12px;
+  margin-right: 24px;
+  margin-left: 24px;
+  padding: 12px 20px;
+  background: var(--color-gray-4);
+  border: 1px solid var(--color-gray-2);
+  border-radius: 10px;
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover,
+  &:has(input:focus),
+  &:has(button:focus) {
+    border-color: var(--color-primary);
+  }
+}
+
+.ChatFormInput {
+  flex: 1;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: var(--font-size-paragraph-sm);
+  line-height: var(--line-height-paragraph-sm);
+  background: none;
+  border: none;
+
+  &::placeholder {
+    color: var(--color-gray-1);
+    font-weight: 400;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.SendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 11px;
+
+  & svg {
+    width: 16px;
+    height: 14px;
+  }
+}

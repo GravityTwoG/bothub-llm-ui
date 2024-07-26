@@ -46,12 +46,19 @@ const fontWeightMap = {
   bold: 'FontWeightBold',
 };
 
+const sizeMap = {
+  sm: 'ParagraphSizeSm',
+  md: 'ParagraphSizeMd',
+};
+
 export type ParagraphProps = HTMLComponentsProps<'p'> & {
   fontWeight?: 'normal' | 'bold' | 'medium' | 'semibold';
+  size?: 'sm' | 'md';
 };
 
 export const Paragraph = ({
   fontWeight = 'normal',
+  size = 'md',
   ...props
 }: ParagraphProps) => {
   return (
@@ -60,6 +67,7 @@ export const Paragraph = ({
       className={clsx(
         classes.Paragraph,
         classes[fontWeightMap[fontWeight]],
+        classes[sizeMap[size]],
         props.className
       )}
     />
