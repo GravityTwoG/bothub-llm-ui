@@ -1,0 +1,7 @@
+body {
+  --header-height: 80px;
+
+  @media (width <= 670px) {
+    --header-height: 70px;
+  }
+}

@@ -5,6 +5,7 @@ import { Button } from '@/ui/atoms/Button/Button';
 import { H1, H2, Paragraph } from '@/ui/atoms/Typography/Typography';
 import MidjourneyGenerated from '@/ui/assets/images/MidjourneyGenerated.png';
 import { Chat } from '@/app/components/Chat/Chat';
+import { navigate } from 'wouter/use-browser-location';
 
 export const HomePage = () => {
   return (
@@ -29,11 +30,13 @@ const HeroSection = () => {
             Без VPN и абонентской платы. Создавайте контент, обрабатывайте
             данные и получайте ответы на вопросы через удобный интерфейс!
           </Paragraph>
-          <Button size="md">Начать работу</Button>
+
+          <Button onClick={() => navigate('/chat')} size="md">
+            Начать работу
+          </Button>
         </div>
-        <div>
-          <Chat />
-        </div>
+
+        <Chat />
       </Container>
     </div>
   );

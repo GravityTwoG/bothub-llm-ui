@@ -1,12 +1,14 @@
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { HomePage } from '@/pages/HomePage/HomePage';
+import { Router } from './components/Router';
+
+import './styles/app.scss';
 
 function App() {
   return (
     <div>
       <Header />
-      <HomePage />
+      <Router />
       <Footer />
     </div>
   );

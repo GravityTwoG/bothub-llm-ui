@@ -23,7 +23,11 @@ const defaultMessages: MessageType[] = [
   },
 ];
 
-export const Chat = () => {
+export type ChatProps = {
+  className?: string;
+};
+
+export const Chat = (props: ChatProps) => {
   const checkboxId = useId();
 
   const [input, setInput] = useState('');
@@ -53,7 +57,7 @@ export const Chat = () => {
   const ref = useDegreesAnimation<HTMLDivElement>();
 
   return (
-    <div className={classes.ChatWrapper}>
+    <div className={clsx(classes.ChatWrapper, props.className)}>
       <div className={classes.Chat} ref={ref}>
         <div className={classes.ChatHeader}>
           <ChatAvatar className={classes.ChatIcon} />
