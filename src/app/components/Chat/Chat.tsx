@@ -35,16 +35,7 @@ export const Chat = () => {
 
   let messagesToShow = messages;
   if (messages.length === 0) {
-    messagesToShow = [
-      ...defaultMessages,
-      ...defaultMessages,
-      ...defaultMessages,
-      ...defaultMessages,
-      ...defaultMessages,
-      ...defaultMessages,
-      ...defaultMessages,
-      ...defaultMessages,
-    ];
+    messagesToShow = defaultMessages;
   }
 
   const onSend = async () => {
@@ -91,7 +82,7 @@ export const Chat = () => {
         </div>
 
         <div className={classes.ChatContent}>
-          <ul className={classes.ChatMessages}>
+          <ul className={clsx(classes.ChatMessages, 'custom-scrollbar')}>
             {messagesToShow.map((message) => (
               <Message
                 key={message.id}

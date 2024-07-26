@@ -113,3 +113,54 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   background-color: var(--color-background);
 }
+
+.custom-scrollbar {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.custom-scrollbar:hover {
+  /* fix for Safari */
+  --safari-fix: ; /* This custom property forces Safari to re-render the scrollbars on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* background of the scrollbar except button or resizer */
+.custom-scrollbar::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+/* scrollbar itself */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 16px;
+  border: 1px solid transparent;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-track {
+  background-color: var(--color-gray-2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-track:hover {
+  background-color: var(--color-gray-1);
+}
+
+/* set button(top and bottom of the scrollbar) */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
