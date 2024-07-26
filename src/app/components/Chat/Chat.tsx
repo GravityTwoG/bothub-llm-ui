@@ -1,7 +1,11 @@
-import { useEffect, useId, useRef } from 'react';
+import { memo, useId, useState } from 'react';
 import { clsx } from 'clsx';
 
 import classes from './chat.module.scss';
+import { useDegreesAnimation } from './useDegreesAnimation';
+
+import { useChat } from '@/app/components/Chat/useChat';
+import { Message as MessageType } from '@/api/api';
 
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
 import { Button } from '@/ui/atoms/Button/Button';
@@ -11,50 +15,56 @@ import Send from '@/ui/icons/Send.svg?react';
 import User from '@/ui/icons/User.svg?react';
 import Gemini from '@/ui/icons/Gemini.svg?react';
 
+const defaultMessages: MessageType[] = [
+  { role: 'user', content: 'Привет бот.', id: crypto.randomUUID() },
+  {
+    role: 'assistant',
+    content: 'Привет! Я бот, который может помочь вам с вашими вопросами.',
+    id: crypto.randomUUID(),
+  },
+];
+
 export const Chat = () => {
   const checkboxId = useId();
 
-  const chatRef = useRef<HTMLDivElement>(null);
+  const [input, setInput] = useState('');
+  const [error, setError] = useState('');
 
-  useEffect(() => {
-    let isMounted = true;
-    let degrees = 0;
+  const { messages, addMessage, isPending, isContextSaved, setIsContextSaved } =
+    useChat();
 
-    function animate() {
-      if (!isMounted || !chatRef.current) return;
+  let messagesToShow = messages;
+  if (messages.length === 0) {
+    messagesToShow = [
+      ...defaultMessages,
+      ...defaultMessages,
+      ...defaultMessages,
+      ...defaultMessages,
+      ...defaultMessages,
+      ...defaultMessages,
+      ...defaultMessages,
+      ...defaultMessages,
+    ];
+  }
 
-      const div = chatRef.current;
-      div.style.setProperty('--deg', degrees + 'deg');
-      degrees = (degrees + 0.5) % 360;
-      requestAnimationFrame(animate);
+  const onSend = async () => {
+    try {
+      if (input.trim() === '') return;
+
+      setError('');
+      setInput('');
+      await addMessage(input);
+    } catch (error) {
+      setInput(input);
+      setError(`Ошибка отправки сообщения: ${error}`);
     }
-    animate();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  const onSend = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
-  const messages = [
-    {
-      id: 0,
-      text: 'Привет бот',
-      type: 'request',
-    },
-    {
-      id: 1,
-      text: 'Привет! Чем я могу помочь?',
-      type: 'response',
-    },
-  ];
+  const ref = useDegreesAnimation<HTMLDivElement>();
 
   return (
     <div className={classes.ChatWrapper}>
-      <div className={classes.Chat} ref={chatRef}>
+      <div className={classes.Chat} ref={ref}>
         <div className={classes.ChatHeader}>
           <ChatAvatar className={classes.ChatIcon} />
 
@@ -68,7 +78,12 @@ export const Chat = () => {
           </div>
 
           <div className={classes.ChatSettings}>
-            <input type="checkbox" id={checkboxId} />
+            <input
+              type="checkbox"
+              id={checkboxId}
+              checked={isContextSaved}
+              onChange={(e) => setIsContextSaved(e.target.checked)}
+            />
             <label htmlFor={checkboxId}>
               <Paragraph size="sm">Сохранить контекст</Paragraph>
             </label>
@@ -77,32 +92,34 @@ export const Chat = () => {
 
         <div className={classes.ChatContent}>
           <ul className={classes.ChatMessages}>
-            {messages.map((message) => (
+            {messagesToShow.map((message) => (
               <Message
                 key={message.id}
-                message={message.text}
-                user={message.type === 'request' ? 'You' : 'Bot'}
+                message={message.content}
+                user={message.role === 'user' ? 'You' : 'Bot'}
               />
             ))}
           </ul>
 
-          <form className={classes.ChatForm} onSubmit={onSend}>
-            <input
-              type="text"
-              className={classes.ChatFormInput}
-              placeholder="Спроси о чем-нибудь..."
-            />
-            <Button className={classes.SendButton}>
-              <Send />
-            </Button>
-          </form>
+          {error && (
+            <div className={classes.ErrorMessage}>
+              <Paragraph>{error}</Paragraph>
+            </div>
+          )}
+
+          <ChatForm
+            input={input}
+            setInput={setInput}
+            isPending={isPending}
+            onSend={onSend}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-const Message = ({ message, user }: { message: string; user: string }) => {
+const Message = memo(({ message, user }: { message: string; user: string }) => {
   return (
     <li
       className={clsx(
@@ -124,5 +141,41 @@ const Message = ({ message, user }: { message: string; user: string }) => {
         </Paragraph>
       </div>
     </li>
+  );
+});
+
+type ChatFormProps = {
+  input: string;
+  setInput: (value: string) => void;
+  isPending: boolean;
+  onSend: () => void;
+};
+
+const ChatForm = ({ input, setInput, isPending, onSend }: ChatFormProps) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSend();
+  };
+
+  const ref = useDegreesAnimation<HTMLFormElement>(4, isPending);
+
+  return (
+    <form
+      className={clsx(classes.ChatForm, isPending && classes.ChatIsPending)}
+      onSubmit={onSubmit}
+      ref={ref}
+    >
+      <input
+        type="text"
+        className={classes.ChatFormInput}
+        placeholder="Спроси о чем-нибудь..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        disabled={isPending}
+      />
+      <Button className={classes.SendButton} disabled={isPending}>
+        <Send />
+      </Button>
+    </form>
   );
 };

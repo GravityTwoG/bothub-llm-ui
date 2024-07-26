@@ -14,7 +14,7 @@
       rgba(#103fe7, 90%) 0%,
       rgba(#103fe7, 0%) 25%
     );
-    content: "";
+    content: '';
   }
 
   &::after {
@@ -29,7 +29,7 @@
       rgba(#ff1ee8, 50%) 0%,
       rgba(#ff1ee8, 0%) 22%
     );
-    content: "";
+    content: '';
   }
 }
 
@@ -89,12 +89,12 @@
       background-size: 12px 10px;
       border: 1px solid var(--color-gray-1);
       border-radius: 2px;
-      content: "";
+      content: '';
     }
 
     & input:checked + label::after {
       background-color: var(--color-primary);
-      background-image: url("@/ui/icons/Check.svg");
+      background-image: url('@/ui/icons/Check.svg');
       border-color: var(--color-primary);
     }
 
@@ -121,7 +121,7 @@
       #1c64f2 51%,
       rgba(#1c64f2, 0%) 100%
     );
-    content: "";
+    content: '';
   }
 
   /* gradient line */
@@ -138,7 +138,7 @@
       #ba1cf2 51%,
       rgba(#e11cf2, 0%) 100%
     );
-    content: "";
+    content: '';
   }
 }
 
@@ -173,7 +173,7 @@
         rgba(#db01ff, 0%) 71%
       );
     opacity: 0.7;
-    content: "";
+    content: '';
   }
 }
 
@@ -186,12 +186,17 @@
   min-height: 395px;
   max-height: calc(100vh - 300px);
   margin-top: 18px;
-  margin-bottom: 18px;
   padding-right: 24px;
   padding-left: 24px;
   overflow-y: auto;
+  scroll-behavior: smooth;
   overscroll-behavior: contain;
   list-style: none;
+  position: relative;
+
+  & .ChatMessage:last-child {
+    margin-bottom: 18px;
+  }
 }
 
 .ChatMessage {
@@ -201,7 +206,7 @@
   align-items: start;
   align-self: end;
   justify-content: flex-start;
-  width: max-content;
+  max-width: 100%;
 
   & .ChatMessageAvatar {
     display: flex;
@@ -237,21 +242,48 @@
   }
 }
 
+.ErrorMessage {
+  margin: 6px 24px 18px;
+  padding: 12px 20px;
+  background: var(--color-danger);
+  border-radius: 10px;
+}
+
 .ChatForm {
   display: flex;
   gap: 12px;
   margin-right: 24px;
   margin-left: 24px;
   padding: 12px 20px;
-  background: var(--color-gray-4);
-  border: 1px solid var(--color-gray-2);
+  background:
+    linear-gradient(var(--color-gray-4), var(--color-gray-4)) padding-box,
+    linear-gradient(
+        var(--deg),
+        var(--default-border-color) 0%,
+        var(--loader-color) 10%,
+        var(--loader-color) 20%,
+        var(--default-border-color) 30%,
+        var(--default-border-color) 100%
+      )
+      border-box;
+  border: 1px solid transparent;
   border-radius: 10px;
-  transition: border-color 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+
+  --deg: 0deg;
+  --default-border-color: var(--color-gray-2);
+  --loader-color: var(--default-border-color);
+
+  &.ChatIsPending {
+    --loader-color: #ba1cf2;
+  }
 
   &:hover,
   &:has(input:focus),
   &:has(button:focus) {
-    border-color: var(--color-primary);
+    &:not(.ChatIsPending) {
+      --default-border-color: var(--color-primary);
+    }
   }
 }
 

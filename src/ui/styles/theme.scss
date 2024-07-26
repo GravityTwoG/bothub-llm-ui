@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 :root {
@@ -15,11 +15,16 @@
   --color-primary-disabled: #313e62;
   --color-text: #fff;
   --color-text-disabled: #616d8d;
+
+  --color-danger: #f2401c;
+
   --color-gray-1: #616d8d;
   --color-gray-2: var(--color-primary-disabled);
   --color-gray-3: #222b44;
   --color-gray-4: #121825;
+
   --color-background: #000;
+
   --font-size-h1: 46px;
   --font-weight-h1: 700;
   --line-height-h1: 60px;
@@ -77,34 +82,34 @@
 
 @font-face {
   font-weight: 700;
-  font-family: "IBM Plex Sans";
+  font-family: 'IBM Plex Sans';
   font-style: normal;
-  src: url("../fonts/IBM Plex Sans/IBMPlexSans-Bold.ttf") format("truetype");
+  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-weight: 600;
-  font-family: "IBM Plex Sans";
+  font-family: 'IBM Plex Sans';
   font-style: normal;
-  src: url("../fonts/IBM Plex Sans/IBMPlexSans-SemiBold.ttf") format("truetype");
+  src: url('../fonts/IBM Plex Sans/IBMPlexSans-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-weight: 500;
-  font-family: "IBM Plex Sans";
+  font-family: 'IBM Plex Sans';
   font-style: normal;
-  src: url("../fonts/IBM Plex Sans/IBMPlexSans-Medium.ttf") format("truetype");
+  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-weight: 400;
-  font-family: "IBM Plex Sans";
+  font-family: 'IBM Plex Sans';
   font-style: normal;
-  src: url("../fonts/IBM Plex Sans/IBMPlexSans-Regular.ttf") format("truetype");
+  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Regular.ttf') format('truetype');
 }
 
 body {
   font-weight: normal;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   background-color: var(--color-background);
 }
