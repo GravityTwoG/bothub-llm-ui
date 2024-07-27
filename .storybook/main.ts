@@ -9,10 +9,6 @@ const storybookConfig: StorybookConfig = {
     '@chromatic-com/storybook',
   ],
 
-  core: {
-    builder: '@storybook/builder-nextjs', // 👈 The builder enabled here.
-  },
-
   docs: {
     autodocs: true,
   },
