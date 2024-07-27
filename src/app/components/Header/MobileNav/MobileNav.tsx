@@ -26,7 +26,8 @@ export const MobileNav = ({ navItems, isOpen, children }: MobileNavProps) => {
           isOpen && delayedIsOpen && classes.Open
         )}
       >
-        <style>{'html > body { overflow: hidden!important; }'}</style>
+        <style>{'html { overflow: hidden; }'}</style>
+
         <ul>
           {navItems.map((item, idx) => (
             <NavItem key={idx} link={item.link} subNavItems={item.subNavItems}>
