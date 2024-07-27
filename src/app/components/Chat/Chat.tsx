@@ -90,7 +90,6 @@ const ChatOnClient = (props: ChatProps) => {
             id={checkboxId}
             checked={isContextSaved}
             onChange={(e) => setIsContextSaved(e.target.checked)}
-            autoFocus
           />
           <label htmlFor={checkboxId}>
             <Paragraph size="sm">Сохранить контекст</Paragraph>
@@ -139,7 +138,7 @@ const ChatOnServer = (props: ChatProps) => {
         </div>
 
         <div className={classes.ChatSettings}>
-          <input type="checkbox" id={checkboxId} autoFocus />
+          <input type="checkbox" id={checkboxId} />
           <label htmlFor={checkboxId}>
             <Paragraph size="sm">Сохранить контекст</Paragraph>
           </label>
@@ -178,8 +177,8 @@ const ChatForm = ({ input, setInput, isPending, onSend }: ChatFormProps) => {
     await onSend();
     if (!textareaRef.current) return;
 
-    textareaRef.current.focus();
     textareaRef.current.style.height = 'auto';
+    setTimeout(() => textareaRef.current?.focus(), 0);
   };
 
   const ref = useDegreesAnimation<HTMLFormElement>(4, isPending);
@@ -223,7 +222,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <textarea
-        className={classes.ChatFormInput}
+        className={clsx(classes.ChatFormInput, 'custom-scrollbar')}
         placeholder="Спроси о чем-нибудь... (Shift + Enter для переноса строки)"
         value={props.input}
         onChange={onChange}
