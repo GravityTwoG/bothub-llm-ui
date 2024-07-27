@@ -1,4 +1,14 @@
-# React + TypeScript + Vite
+# BotHub - тестовое задание
+
+- Верстка на основе макета
+- Есть рендер markdown и подсветка синтаксиса
+- Поддержка многострочного ввода
+- при открытии меню навигации не происходит Layout Shift, как на https://bothub.chat/
+- Для обращения к API используется api handler nextjs, поэтому API KEY не утекает на клиент
+
+![](./preview.png)
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -22,7 +32,7 @@ export default {
     project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
