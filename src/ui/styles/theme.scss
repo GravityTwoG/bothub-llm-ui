@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
 }
 
 :root {
@@ -25,6 +25,7 @@
   --color-background: #000;
 
   /* typography */
+
   /* h1 */
   --font-size-h1: 46px;
   --font-weight-h1: 700;
@@ -63,7 +64,6 @@
   /* paragraph-sm */
   --font-size-paragraph-sm: 14px;
   --line-height-paragraph-sm: 18px;
-
   --screen-tablet: 1060px;
   --screen-mobile: 670px;
 
@@ -96,34 +96,6 @@
   }
 }
 
-@font-face {
-  font-weight: 700;
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-weight: 600;
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-SemiBold.ttf') format('truetype');
-}
-
-@font-face {
-  font-weight: 500;
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-weight: 400;
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  src: url('../fonts/IBM Plex Sans/IBMPlexSans-Regular.ttf') format('truetype');
-}
-
 html {
   width: 100vw;
   overflow-x: hidden;
@@ -131,7 +103,8 @@ html {
 
 body {
   font-weight: normal;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-ibm-plex-sans), Inter, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
   background-color: var(--color-background);
   scrollbar-gutter: stable both-edges;
 }

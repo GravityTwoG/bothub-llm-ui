@@ -1,11 +1,13 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from '@uidotdev/usehooks';
 
 import classes from './header.module.scss';
 
-import Logo from '@/ui/icons/Logo.svg?react';
-import Telegram from '@/ui/icons/Telegram.svg?react';
-import Bag from '@/ui/icons/Bag.svg?react';
+import { ReactComponent as Logo } from '@/ui/assets/icons/Logo.svg';
+import { ReactComponent as Telegram } from '@/ui/assets/icons/Telegram.svg';
+import { ReactComponent as Bag } from '@/ui/assets/icons/Bag.svg';
 
 import { Button } from '@/ui/atoms/Button/Button';
 import { Container } from '@/ui/atoms/Container/Container';

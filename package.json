@@ -4,35 +4,36 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "stylelint": "stylelint \"**/*.{css,scss}\"",
+    "stylelint": "stylelint \"./{src,app}/**/*.{css,scss}\"",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
     "clsx": "^2.1.1",
+    "next": "^14.2.5",
     "openai-edge": "^1.2.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
-    "shiki": "^1.12.0",
-    "wouter": "^3.3.1"
+    "shiki": "^1.12.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
-    "@storybook/builder-vite": "^8.2.6",
-    "@storybook/react-vite": "^8.2.6",
+    "@next/eslint-plugin-next": "^14.2.5",
+    "@storybook/nextjs": "^8.2.6",
+    "@svgr/webpack": "^8.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
-    "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
+    "file-loader": "^6.2.0",
     "sass": "^1.77.8",
     "stylelint": "^16.7.0",
     "stylelint-config-rational-order": "^0.1.2",
@@ -40,8 +41,8 @@
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.2",
+    "svgo": "^3.3.2",
     "typescript": "^5.2.2",
-    "vite": "^5.3.4",
-    "vite-plugin-svgr": "^4.2.0"
+    "url-loader": "^4.1.1"
   }
 }

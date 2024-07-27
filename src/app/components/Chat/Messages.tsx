@@ -2,7 +2,7 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import classes from './chat.module.scss';
-import { Message as MessageType } from '@/api/api';
+import { Message as MessageType } from '@/api/openaiClient';
 
 import { useMeasure } from '@uidotdev/usehooks';
 import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
@@ -18,8 +18,8 @@ import {
   H6,
 } from '@/ui/atoms/Typography/Typography';
 import { Code } from '@/ui/atoms/Code/Code';
-import User from '@/ui/icons/User.svg?react';
-import Gemini from '@/ui/icons/Gemini.svg?react';
+import { ReactComponent as User } from '@/ui/assets/icons/User.svg';
+import { ReactComponent as Gemini } from '@/ui/assets/icons/Gemini.svg';
 import Markdown from 'react-markdown';
 
 const MAX_DELAY = 500;

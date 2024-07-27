@@ -1,7 +1,7 @@
 import classes from './language-selector.module.scss';
 
-import Globus from '@/ui/icons/Globus.svg?react';
-import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
+import { ReactComponent as Globus } from '@/ui/assets/icons/Globus.svg';
+import { ReactComponent as ArrowDown } from '@/ui/assets/icons/ArrowDown.svg';
 import { useState } from 'react';
 import { clsx } from 'clsx';
 import { useClickAway } from '@uidotdev/usehooks';
@@ -9,7 +9,7 @@ import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
 
 export const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const delayedIsOpen = useDelayedBoolean(isOpen);
+  const delayedIsOpen = useDelayedBoolean(isOpen, 50);
 
   const ref = useClickAway<HTMLUListElement>((e) => {
     if (e.target instanceof HTMLElement || e.target instanceof SVGElement) {

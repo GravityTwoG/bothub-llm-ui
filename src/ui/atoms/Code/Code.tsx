@@ -6,7 +6,7 @@ import classes from './code.module.scss';
 import { HTMLComponentsProps } from '@/ui/types';
 
 import { Paragraph } from '../Typography/Typography';
-import Copy from '@/ui/icons/Copy.svg?react';
+import { ReactComponent as Copy } from '@/ui/assets/icons/Copy.svg';
 
 const copiedStateMap = {
   success: 'CopySuccess',

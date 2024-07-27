@@ -18,7 +18,7 @@
   color: var(--color-text);
   font-weight: 600;
   font-size: 16px;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
   line-height: 22px;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -57,12 +57,12 @@
   left: 0;
   z-index: 10;
   width: max-content;
-  transition:
-    transform 0.1s ease,
-    opacity 0.2s ease;
   transform: scaleX(0) scaleY(0);
   transform-origin: top left;
   opacity: 0;
+  transition:
+    transform 0.1s ease,
+    opacity 0.2s ease;
 
   &.Open {
     transform: scaleX(1) scaleY(1);
@@ -94,7 +94,7 @@
   color: var(--color-text);
   font-weight: 600;
   font-size: 16px;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
   line-height: 22px;
   text-decoration: none;
   background-color: transparent;

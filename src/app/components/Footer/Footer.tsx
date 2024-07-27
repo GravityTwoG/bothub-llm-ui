@@ -2,9 +2,9 @@ import classes from './footer.module.scss';
 
 import { Container } from '@/ui/atoms/Container/Container';
 
-import Logo from '@/ui/icons/Logo.svg?react';
-import Association from './association.png';
+import { ReactComponent as Logo } from '@/ui/assets/icons/Logo.svg';
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
+import Image from 'next/image';
 
 type Link = {
   link: string;
@@ -121,10 +121,12 @@ export const Footer = () => {
               <Paragraph size="sm">Пользовательское соглашение</Paragraph>
             </a>
           </div>
-          <img
+          <Image
             className={classes.Association}
-            src={Association}
+            src={'/association.png'}
             alt="АЛРИИ Ассоциация лабораторий по развитию искусственного интеллекта"
+            width={60}
+            height={60}
           />
         </div>
 

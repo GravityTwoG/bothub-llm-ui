@@ -1,7 +1,7 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const storybookConfig: StorybookConfig = {
-  framework: '@storybook/react-vite',
+  framework: '@storybook/nextjs',
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
@@ -10,7 +10,7 @@ const storybookConfig: StorybookConfig = {
   ],
 
   core: {
-    builder: '@storybook/builder-vite', // 👈 The builder enabled here.
+    builder: '@storybook/builder-nextjs', // 👈 The builder enabled here.
   },
 
   docs: {

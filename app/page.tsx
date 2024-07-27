@@ -2,12 +2,12 @@ import classes from './home-page.module.scss';
 
 import { Container } from '@/ui/atoms/Container/Container';
 import { Button } from '@/ui/atoms/Button/Button';
-import { H1, H2, Paragraph } from '@/ui/atoms/Typography/Typography';
-import MidjourneyGenerated from '@/ui/assets/images/MidjourneyGenerated.png';
-import { Chat } from '@/app/components/Chat/Chat';
-import { navigate } from 'wouter/use-browser-location';
+import { H2, Paragraph } from '@/ui/atoms/Typography/Typography';
 
-export const HomePage = () => {
+import { HeroSection } from './HeroSection';
+import Image from 'next/image';
+
+export default function HomePage() {
   return (
     <div className={classes.HomePage}>
       <HeroSection />
@@ -17,30 +17,7 @@ export const HomePage = () => {
       <ExtraFeatureSection />
     </div>
   );
-};
-
-const HeroSection = () => {
-  return (
-    <div className={classes.HeroSection}>
-      <Container className={classes.HeroSectionContainer}>
-        <div className={classes.HeroSectionText}>
-          <H1>ChatGPT: ваш умный помощник</H1>
-          <Paragraph fontWeight="medium">
-            Экспериментируйте с ChatGPT-4, Midjourney и Claude в одном месте.
-            Без VPN и абонентской платы. Создавайте контент, обрабатывайте
-            данные и получайте ответы на вопросы через удобный интерфейс!
-          </Paragraph>
-
-          <Button onClick={() => navigate('/chat')} size="md">
-            Начать работу
-          </Button>
-        </div>
-
-        <Chat />
-      </Container>
-    </div>
-  );
-};
+}
 
 const features = [
   {
@@ -112,22 +89,27 @@ const FeatureItem = ({
 
 const ExtraFeatureSection = () => {
   return (
-    <Container className={classes.ExtraFeatureSection}>
-      <img
-        src={MidjourneyGenerated}
-        className={classes.ExtraFeatureSectionImage}
-        alt=""
-      />
-      <div className={classes.ExtraFeatureSectionText}>
-        <H2>Генерация Изображений Через Midjourney</H2>
-        <Paragraph>
-          MidJourney - инструмент для создания уникальных изображений. Наши
-          алгоритмы помогут вам воплотить в жизнь вашу идею. Начните
-          генерировать изображения с MidJourney прямо сейчас! Кликните на кнопку
-          ниже, чтобы начать творить.
-        </Paragraph>
+    <Container>
+      <div className={classes.ExtraFeatureSection}>
+        <Image
+          src={'/MidjourneyGenerated.png'}
+          className={classes.ExtraFeatureSectionImage}
+          alt=""
+          width={330}
+          height={330}
+          priority
+        />
+        <div className={classes.ExtraFeatureSectionText}>
+          <H2>Генерация Изображений Через Midjourney</H2>
+          <Paragraph>
+            MidJourney - инструмент для создания уникальных изображений. Наши
+            алгоритмы помогут вам воплотить в жизнь вашу идею. Начните
+            генерировать изображения с MidJourney прямо сейчас! Кликните на
+            кнопку ниже, чтобы начать творить.
+          </Paragraph>
 
-        <Button>Попробовать Midjourney</Button>
+          <Button>Попробовать Midjourney</Button>
+        </div>
       </div>
     </Container>
   );

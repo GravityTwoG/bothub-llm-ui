@@ -5,7 +5,7 @@ import classes from './mobile-nav.module.scss';
 
 import { NavItemType, SubNavItems } from '../HeaderNav/HeaderNav';
 
-import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
+import { ReactComponent as ArrowDown } from '@/ui/assets/icons/ArrowDown.svg';
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
 import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
 
@@ -16,7 +16,7 @@ export type MobileNavProps = {
 };
 
 export const MobileNav = ({ navItems, isOpen, children }: MobileNavProps) => {
-  const delayedIsOpen = useDelayedBoolean(isOpen);
+  const delayedIsOpen = useDelayedBoolean(isOpen, 50);
 
   return (
     (isOpen || delayedIsOpen) && (

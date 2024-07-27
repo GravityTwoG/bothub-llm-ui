@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, useId, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 
@@ -5,13 +7,13 @@ import classes from './chat.module.scss';
 import { useDegreesAnimation } from './useDegreesAnimation';
 
 import { useChat } from '@/app/components/Chat/useChat';
-import { Message as MessageType } from '@/api/api';
+import { Message as MessageType } from '@/api/openaiClient';
 
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
 import { Button } from '@/ui/atoms/Button/Button';
 
-import ChatAvatar from '@/ui/assets/images/ChatAvatar.svg?react';
-import Send from '@/ui/icons/Send.svg?react';
+import { ReactComponent as ChatAvatar } from '@/ui/assets/images/ChatAvatar.svg';
+import { ReactComponent as Send } from '@/ui/assets/icons/Send.svg';
 import { MessageList } from './Messages';
 
 const defaultMessages: MessageType[] = [

@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai-edge';
 
-const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
-const API_URL = import.meta.env.VITE_OPENAI_API_URL;
+const API_KEY = process.env.OPENAI_API_KEY;
+const API_URL = process.env.OPENAI_API_URL;
 
 const configuration = new Configuration({
   apiKey: API_KEY,

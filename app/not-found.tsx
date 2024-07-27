@@ -2,7 +2,7 @@ import classes from './not-found-page.module.scss';
 
 import { H1 } from '@/ui/atoms/Typography/Typography';
 
-export const NotFoundPage = () => {
+export default function NotFound() {
   return (
     <div className={classes.NotFoundPage}>
       <div>
@@ -10,4 +10,4 @@ export const NotFoundPage = () => {
       </div>
     </div>
   );
-};
+}

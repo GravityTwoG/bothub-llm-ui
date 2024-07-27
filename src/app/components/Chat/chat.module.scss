@@ -13,9 +13,9 @@
     background: radial-gradient(
       240% 220% at 60% 50%,
       rgba(#103fe7, 90%) 0%,
-      rgba(0, 0, 0, 0) 25%
+      rgb(0 0 0 / 0%) 25%
     );
-    content: '';
+    content: "";
   }
 
   &::after {
@@ -28,9 +28,9 @@
     background: radial-gradient(
       180% 200% at 45% 55%,
       rgba(#ff1ee8, 50%) 0%,
-      rgba(0, 0, 0, 0) 22%
+      rgb(0 0 0 / 0%) 22%
     );
-    content: '';
+    content: "";
   }
 }
 
@@ -49,13 +49,13 @@
     linear-gradient(var(--color-gray-4), var(--color-gray-4)) padding-box,
     linear-gradient(
         var(--deg),
-        rgba(0, 0, 0, 0) 0%,
+        rgb(0 0 0 / 0%) 0%,
         #ba1cf2 33%,
         var(--color-primary) 67%,
         var(--color-primary) 100%
       )
       border-box,
-    linear-gradient(-180deg, #363f54 15%, rgba(0, 0, 0, 0) 100%) border-box;
+    linear-gradient(-180deg, #363f54 15%, rgb(0 0 0 / 0%) 100%) border-box;
   border: 1px solid transparent;
   border-radius: var(--border-radius);
 
@@ -104,12 +104,12 @@
       background-size: 12px 10px;
       border: 1px solid var(--color-gray-1);
       border-radius: 2px;
-      content: '';
+      content: "";
     }
 
     & input:checked + label::after {
       background-color: var(--color-primary);
-      background-image: url('@/ui/icons/Check.svg');
+      background-image: url("../../../ui/assets/icons/Check.svg");
       border-color: var(--color-primary);
     }
 
@@ -132,11 +132,11 @@
     height: 1px;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0) 0%,
+      rgb(0 0 0 / 0%) 0%,
       var(--color-primary) 51%,
-      rgba(0, 0, 0, 0) 100%
+      rgb(0 0 0 / 0%) 100%
     );
-    content: '';
+    content: "";
   }
 
   /* gradient line */
@@ -149,11 +149,11 @@
     height: 1px;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0) 0%,
+      rgb(0 0 0 / 0%) 0%,
       #ba1cf2 51%,
-      rgba(0, 0, 0, 0) 100%
+      rgb(0 0 0 / 0%) 100%
     );
-    content: '';
+    content: "";
   }
 }
 
@@ -186,30 +186,28 @@
     background: radial-gradient(
         80% 110% at 10% 120%,
         var(--color-primary) 0%,
-        rgba(0, 0, 0, 0) 71%
+        rgb(0 0 0 / 0%) 71%
       ),
       radial-gradient(
         50% 90% at 55% 120%,
         rgba(#db01ff, 70%) 0%,
-        rgba(0, 0, 0, 0) 71%
+        rgb(0 0 0 / 0%) 71%
       );
     opacity: 0.7;
-    content: '';
+    content: "";
     pointer-events: none;
   }
 }
 
 .ChatMessages {
-  flex: 1 0 auto;
   position: relative;
-
+  flex: 1 0 auto;
   width: 100%;
-
-  padding-right: var(--padding);
-  padding-left: var(--padding);
-  height: 0px;
+  height: 0;
   min-height: 395px;
   max-height: calc(100vh - 600px);
+  padding-right: var(--padding);
+  padding-left: var(--padding);
   transition: height 0.7s ease-in-out;
   overscroll-behavior: contain;
 
@@ -217,11 +215,10 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    align-items: end;
+    align-items: flex-end;
     justify-content: flex-start;
-    max-width: 100%;
-
     width: 100%;
+    max-width: 100%;
     list-style: none;
   }
 
@@ -235,15 +232,14 @@
 }
 
 .ChatMessage {
-  align-self: end;
-
   display: flex;
   flex-direction: row-reverse;
-  align-items: start;
-  justify-content: flex-start;
   gap: 9px;
-  text-align: left;
+  align-items: flex-start;
+  align-self: end;
+  justify-content: flex-start;
   max-width: 100%;
+  text-align: left;
   word-wrap: break-word;
 
   & .ChatMessageAvatar,
@@ -291,14 +287,14 @@
     border-radius: 10px 10px 0;
 
     & li {
-      list-style-position: inside;
       margin-right: auto;
+      list-style-position: inside;
     }
   }
 
   &.ChatMessageBot {
     flex-direction: row;
-    align-self: start;
+    align-self: flex-start;
 
     & .ChatMessageText {
       background: var(--color-gray-2);
@@ -319,10 +315,10 @@
 }
 
 .ChatForm {
-  margin-top: auto;
   display: flex;
-  align-items: start;
   gap: 12px;
+  align-items: flex-start;
+  margin-top: auto;
   margin-right: var(--padding);
   margin-left: var(--padding);
   padding: 12px 20px;
@@ -359,16 +355,16 @@
 }
 
 .ChatFormInput {
+  display: block;
   flex: 1;
+  padding: 12px 0;
   color: var(--color-text);
   font-weight: 500;
   font-size: var(--font-size-paragraph-sm);
   line-height: var(--line-height-paragraph-sm);
   background: none;
   border: none;
-  display: block;
   resize: none;
-  padding: 12px 0px;
 
   &::placeholder {
     color: var(--color-gray-1);

@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 
 import classes from './header-nav.module.scss';
 
-import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
+import { ReactComponent as ArrowDown } from '@/ui/assets/icons/ArrowDown.svg';
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
 import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
 
@@ -52,7 +52,7 @@ type NavItemProps = {
 
 const NavItem = (props: NavItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const delayedIsOpen = useDelayedBoolean(isOpen);
+  const delayedIsOpen = useDelayedBoolean(isOpen, 50);
   const buttonId = useId();
 
   const ref = useClickAway<HTMLUListElement>((e) => {

@@ -1,10 +1,10 @@
 .BurgerButton {
   position: relative;
-  padding: 19px;
+  padding: 19px !important;
 
   --gap: 4px;
 
-  span {
+  & span {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,28 +19,28 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  span:nth-child(1) {
+  & span:nth-child(1) {
     transform: translate(-50%, calc(-50% + var(--gap))) rotate(0deg);
   }
 
-  span:nth-child(2) {
+  & span:nth-child(2) {
     transform: translate(-50%, -50%) rotate(0deg);
   }
 
-  span:nth-child(3) {
+  & span:nth-child(3) {
     transform: translate(-50%, calc(-50% - var(--gap))) rotate(0deg);
   }
 
   &.BurgerButtonOpen {
-    span:nth-child(1) {
+    & span:nth-child(1) {
       transform: translate(-50%, -50%) rotate(45deg);
     }
 
-    span:nth-child(2) {
+    & span:nth-child(2) {
       transform: translate(-50%, -50%) rotateY(90deg);
     }
 
-    span:nth-child(3) {
+    & span:nth-child(3) {
       transform: translate(-50%, -50%) rotate(-45deg);
     }
   }

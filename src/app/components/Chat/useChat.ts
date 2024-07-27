@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from '@uidotdev/usehooks';
 
-import { createCompletion, Message } from '@/api/api';
+import { Message } from '@/api/openaiClient';
+import { createCompletion } from '@/api/createCompletion';
 
 const context = {
   saveContext(messages: Message[]) {

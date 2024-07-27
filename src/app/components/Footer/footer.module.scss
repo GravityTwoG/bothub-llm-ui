@@ -18,7 +18,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 46px;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   padding-top: 64px;
   padding-bottom: 64px;
@@ -83,6 +83,7 @@
 
   .Association {
     width: 87px;
+    height: auto;
   }
 }
 
@@ -91,7 +92,7 @@
   flex: 1;
   flex-wrap: wrap;
   gap: 40px;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   list-style: none;

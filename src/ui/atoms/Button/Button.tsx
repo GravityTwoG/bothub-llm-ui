@@ -22,9 +22,9 @@ export const Button = ({
       {...props}
       className={clsx(
         classes.Button,
-        props.className,
         classes[corner],
-        classes[sizeMap[size]]
+        classes[sizeMap[size]],
+        props.className
       )}
     >
       {props.children}
