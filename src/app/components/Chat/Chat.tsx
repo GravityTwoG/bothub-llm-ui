@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { forwardRef, useId, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 
 import classes from './chat.module.scss';
@@ -114,13 +114,19 @@ type ChatFormProps = {
   input: string;
   setInput: (value: string) => void;
   isPending: boolean;
-  onSend: () => void;
+  onSend: () => Promise<void>;
 };
 
 const ChatForm = ({ input, setInput, isPending, onSend }: ChatFormProps) => {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSend();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const onSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+    await onSend();
+    if (!textareaRef.current) return;
+
+    textareaRef.current.focus();
+    textareaRef.current.style.height = 'auto';
   };
 
   const ref = useDegreesAnimation<HTMLFormElement>(4, isPending);
@@ -131,13 +137,12 @@ const ChatForm = ({ input, setInput, isPending, onSend }: ChatFormProps) => {
       onSubmit={onSubmit}
       ref={ref}
     >
-      <input
-        type="text"
-        className={classes.ChatFormInput}
-        placeholder="Спроси о чем-нибудь..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        disabled={isPending}
+      <TextArea
+        ref={textareaRef}
+        input={input}
+        setInput={setInput}
+        isPending={isPending}
+        onEnter={onSubmit}
       />
       <Button className={classes.SendButton} disabled={isPending}>
         <Send />
@@ -145,3 +150,40 @@ const ChatForm = ({ input, setInput, isPending, onSend }: ChatFormProps) => {
     </form>
   );
 };
+
+type TextAreaProps = {
+  input: string;
+  setInput: (value: string) => void;
+  isPending: boolean;
+  onEnter?: () => void;
+};
+
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (props, ref) => {
+    const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      props.setInput(e.target.value);
+
+      const element = e.target;
+      element.style.height = 'auto';
+      element.style.height = `${Math.min(element.scrollHeight, 16 * 4)}px`;
+    };
+
+    return (
+      <textarea
+        className={classes.ChatFormInput}
+        placeholder="Спроси о чем-нибудь... (Shift + Enter для переноса строки)"
+        value={props.input}
+        onChange={onChange}
+        disabled={props.isPending}
+        rows={1}
+        ref={ref}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            props.onEnter?.();
+          }
+        }}
+      />
+    );
+  }
+);

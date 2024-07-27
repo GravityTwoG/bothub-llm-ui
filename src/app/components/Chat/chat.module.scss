@@ -310,6 +310,7 @@
 .ChatForm {
   margin-top: auto;
   display: flex;
+  align-items: start;
   gap: 12px;
   margin-right: var(--padding);
   margin-left: var(--padding);
@@ -354,6 +355,9 @@
   line-height: var(--line-height-paragraph-sm);
   background: none;
   border: none;
+  display: block;
+  resize: none;
+  padding: 12px 0px;
 
   &::placeholder {
     color: var(--color-gray-1);
