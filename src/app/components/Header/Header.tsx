@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useMediaQuery } from '@uidotdev/usehooks';
+import { useIsClient, useMediaQuery } from '@uidotdev/usehooks';
 
 import classes from './header.module.scss';
 
@@ -42,6 +42,19 @@ const navItems = [
 ];
 
 export const Header = () => {
+  const isClient = useIsClient();
+
+  return (
+    <header className={classes.HeaderWrapper}>
+      <div className={classes.HeaderPlaceholder}></div>
+      <div className={classes.Header}>
+        {isClient ? <HeaderContent /> : null}
+      </div>
+    </header>
+  );
+};
+
+const HeaderContent = () => {
   const isDesktop = useMediaQuery('(min-width: 1061px)');
   const isTabletOrDesktop = useMediaQuery('(min-width: 671px)');
 
@@ -55,45 +68,40 @@ export const Header = () => {
   }, [isDesktop]);
 
   return (
-    <header className={classes.HeaderWrapper}>
-      <div className={classes.HeaderPlaceholder}></div>
-      <div className={classes.Header}>
-        <Container className={classes.HeaderContent}>
-          <a href="/" className={classes.HeaderLogo}>
-            <Logo />
-          </a>
+    <Container className={classes.HeaderContent}>
+      <a href="/" className={classes.HeaderLogo}>
+        <Logo />
+      </a>
 
-          <div className={classes.HeaderSeparator}></div>
+      <div className={classes.HeaderSeparator}></div>
 
-          {isDesktop && <HeaderNav navItems={navItems} />}
+      {isDesktop && <HeaderNav navItems={navItems} />}
 
-          <div className={classes.HeaderActions}>
-            <div className={classes.LanguageSelector}>
-              <LanguageSelector />
-            </div>
+      <div className={classes.HeaderActions}>
+        <div className={classes.LanguageSelector}>
+          <LanguageSelector />
+        </div>
 
-            {isTabletOrDesktop && (
-              <div className={classes.HeaderActionItem}>
-                <Button>Авторизация</Button>
-              </div>
-            )}
-
-            {!isDesktop && (
-              <>
-                <div className={classes.HeaderActionItem}>
-                  <BurgerButton
-                    isOpen={isOpen}
-                    onClick={() => setIsOpen(!isOpen)}
-                  />
-                </div>
-                <MobileNav navItems={navItems} isOpen={isOpen}>
-                  {!isTabletOrDesktop && <Button>Авторизация</Button>}
-                </MobileNav>
-              </>
-            )}
+        {isTabletOrDesktop && (
+          <div className={classes.HeaderActionItem}>
+            <Button>Авторизация</Button>
           </div>
-        </Container>
+        )}
+
+        {!isDesktop && (
+          <>
+            <div className={classes.HeaderActionItem}>
+              <BurgerButton
+                isOpen={isOpen}
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            </div>
+            <MobileNav navItems={navItems} isOpen={isOpen}>
+              {!isTabletOrDesktop && <Button>Авторизация</Button>}
+            </MobileNav>
+          </>
+        )}
       </div>
-    </header>
+    </Container>
   );
 };

@@ -15,6 +15,7 @@ import { Button } from '@/ui/atoms/Button/Button';
 import { ReactComponent as ChatAvatar } from '@/ui/assets/images/ChatAvatar.svg';
 import { ReactComponent as Send } from '@/ui/assets/icons/Send.svg';
 import { MessageList } from './Messages';
+import { useIsClient } from '@uidotdev/usehooks';
 
 const defaultMessages: MessageType[] = [
   { role: 'user', content: 'Привет бот.', id: crypto.randomUUID() },
@@ -31,6 +32,16 @@ export type ChatProps = {
 };
 
 export const Chat = (props: ChatProps) => {
+  const isClient = useIsClient();
+
+  return (
+    <div className={clsx(classes.ChatWrapper)}>
+      {isClient ? <ChatOnClient {...props} /> : <ChatOnServer {...props} />}
+    </div>
+  );
+};
+
+const ChatOnClient = (props: ChatProps) => {
   const checkboxId = useId();
 
   const [input, setInput] = useState('');
@@ -60,53 +71,93 @@ export const Chat = (props: ChatProps) => {
   const ref = useDegreesAnimation<HTMLDivElement>();
 
   return (
-    <div className={clsx(classes.ChatWrapper)}>
-      <div className={clsx(classes.Chat, props.className)} ref={ref}>
-        <div className={classes.ChatHeader}>
-          <ChatAvatar className={classes.ChatIcon} />
+    <div className={clsx(classes.Chat, props.className)} ref={ref}>
+      <div className={classes.ChatHeader}>
+        <ChatAvatar className={classes.ChatIcon} />
 
-          <div className={classes.ChatInfo}>
-            <Paragraph className={classes.UserName}>
-              BotHub: ChatGPT & Midjourney
-            </Paragraph>
-            <Paragraph size="sm" className={classes.UserType}>
-              bot
-            </Paragraph>
-          </div>
-
-          <div className={classes.ChatSettings}>
-            <input
-              type="checkbox"
-              id={checkboxId}
-              checked={isContextSaved}
-              onChange={(e) => setIsContextSaved(e.target.checked)}
-              autoFocus
-            />
-            <label htmlFor={checkboxId}>
-              <Paragraph size="sm">Сохранить контекст</Paragraph>
-            </label>
-          </div>
+        <div className={classes.ChatInfo}>
+          <Paragraph className={classes.UserName}>
+            BotHub: ChatGPT & Midjourney
+          </Paragraph>
+          <Paragraph size="sm" className={classes.UserType}>
+            bot
+          </Paragraph>
         </div>
 
-        <div className={classes.ChatContent}>
-          <MessageList
-            messages={messagesToShow}
-            className={props.messageListClassName}
+        <div className={classes.ChatSettings}>
+          <input
+            type="checkbox"
+            id={checkboxId}
+            checked={isContextSaved}
+            onChange={(e) => setIsContextSaved(e.target.checked)}
+            autoFocus
           />
-
-          {error && (
-            <div className={classes.ErrorMessage}>
-              <Paragraph>{error}</Paragraph>
-            </div>
-          )}
-
-          <ChatForm
-            input={input}
-            setInput={setInput}
-            isPending={isPending}
-            onSend={onSend}
-          />
+          <label htmlFor={checkboxId}>
+            <Paragraph size="sm">Сохранить контекст</Paragraph>
+          </label>
         </div>
+      </div>
+
+      <div className={classes.ChatContent}>
+        <MessageList
+          messages={messagesToShow}
+          className={props.messageListClassName}
+        />
+
+        {error && (
+          <div className={classes.ErrorMessage}>
+            <Paragraph>{error}</Paragraph>
+          </div>
+        )}
+
+        <ChatForm
+          input={input}
+          setInput={setInput}
+          isPending={isPending}
+          onSend={onSend}
+        />
+      </div>
+    </div>
+  );
+};
+
+const ChatOnServer = (props: ChatProps) => {
+  const checkboxId = useId();
+
+  return (
+    <div className={clsx(classes.Chat, props.className)}>
+      <div className={classes.ChatHeader}>
+        <ChatAvatar className={classes.ChatIcon} />
+
+        <div className={classes.ChatInfo}>
+          <Paragraph className={classes.UserName}>
+            BotHub: ChatGPT & Midjourney
+          </Paragraph>
+          <Paragraph size="sm" className={classes.UserType}>
+            bot
+          </Paragraph>
+        </div>
+
+        <div className={classes.ChatSettings}>
+          <input type="checkbox" id={checkboxId} autoFocus />
+          <label htmlFor={checkboxId}>
+            <Paragraph size="sm">Сохранить контекст</Paragraph>
+          </label>
+        </div>
+      </div>
+
+      <div className={classes.ChatContent}>
+        <MessageList
+          messages={defaultMessages}
+          className={props.messageListClassName}
+        />
+
+        <ChatForm
+          input={''}
+          setInput={() => {}}
+          isPending={false}
+          onSend={async () => {}}
+        />
       </div>
     </div>
   );
