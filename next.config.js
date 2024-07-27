@@ -2,9 +2,24 @@
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf|png|jpg|gif|svg)$/,
+      issuer: {
+        and: [/\.(css|scss|sass)$/],
+      },
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
+      ],
+    });
+
+    config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|png|jpg|gif)$/,
       issuer: {
-        and: [/\.(js|ts|jsx|tsxcss|scss|sass)?$/],
+        and: [/\.(js|ts|jsx|tsx)$/],
       },
       use: [
         {
@@ -16,10 +31,11 @@ const nextConfig = {
         },
       ],
     });
+
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|png|jpg|gif)$/,
       issuer: {
-        and: [/\.(js|ts|jsx|tsx|css|scss|sass)?$/],
+        and: [/\.(js|ts|jsx|tsx)$/],
       },
       use: [
         {
