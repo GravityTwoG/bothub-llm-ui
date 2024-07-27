@@ -52,7 +52,17 @@
   background-color: var(--color-gray-3);
   border: 1px solid var(--color-gray-2);
   border-radius: 10px;
-  transform: translateX(-50%);
+  transition:
+    transform 0.1s ease,
+    opacity 0.2s ease;
+  transform: translateX(-50%) scaleX(0.75) scaleY(0.75);
+  transform-origin: top;
+  opacity: 0;
+
+  &.Open {
+    transform: translateX(-50%) scaleX(1) scaleY(1);
+    opacity: 1;
+  }
 }
 
 .LanguageSelectorDropdown li {
@@ -62,7 +72,7 @@
     color: var(--color-text);
     font-weight: 600;
     font-size: 16px;
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     line-height: 22px;
     text-transform: uppercase;
     background-color: transparent;

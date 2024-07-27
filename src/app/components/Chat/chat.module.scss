@@ -13,7 +13,7 @@
     background: radial-gradient(
       240% 220% at 60% 50%,
       rgba(#103fe7, 90%) 0%,
-      rgba(#103fe7, 0%) 25%
+      rgba(0, 0, 0, 0) 25%
     );
     content: '';
   }
@@ -28,7 +28,7 @@
     background: radial-gradient(
       180% 200% at 45% 55%,
       rgba(#ff1ee8, 50%) 0%,
-      rgba(#ff1ee8, 0%) 22%
+      rgba(0, 0, 0, 0) 22%
     );
     content: '';
   }
@@ -49,13 +49,13 @@
     linear-gradient(var(--color-gray-4), var(--color-gray-4)) padding-box,
     linear-gradient(
         var(--deg),
-        rgba(#e11cf2, 0%) 0%,
+        rgba(0, 0, 0, 0) 0%,
         #ba1cf2 33%,
-        #1c64f2 67%,
-        rgba(#1c64f2, 0%) 100%
+        var(--color-primary) 67%,
+        var(--color-primary) 100%
       )
       border-box,
-    linear-gradient(-180deg, #363f54 15%, rgb(0 0 0 / 0%) 100%) border-box;
+    linear-gradient(-180deg, #363f54 15%, rgba(0, 0, 0, 0) 100%) border-box;
   border: 1px solid transparent;
   border-radius: var(--border-radius);
 
@@ -132,9 +132,9 @@
     height: 1px;
     background: linear-gradient(
       90deg,
-      rgba(#1c64f2, 0%) 0%,
-      #1c64f2 51%,
-      rgba(#1c64f2, 0%) 100%
+      rgba(0, 0, 0, 0) 0%,
+      var(--color-primary) 51%,
+      rgba(0, 0, 0, 0) 100%
     );
     content: '';
   }
@@ -149,9 +149,9 @@
     height: 1px;
     background: linear-gradient(
       90deg,
-      rgba(#e11cf2, 0%) 0%,
+      rgba(0, 0, 0, 0) 0%,
       #ba1cf2 51%,
-      rgba(#e11cf2, 0%) 100%
+      rgba(0, 0, 0, 0) 100%
     );
     content: '';
   }
@@ -185,13 +185,13 @@
     height: 260px;
     background: radial-gradient(
         80% 110% at 10% 120%,
-        rgba(#1c64f2, 100%) 0%,
-        rgba(#1c64f2, 0%) 71%
+        var(--color-primary) 0%,
+        rgba(0, 0, 0, 0) 71%
       ),
       radial-gradient(
         50% 90% at 55% 120%,
         rgba(#db01ff, 70%) 0%,
-        rgba(#db01ff, 0%) 71%
+        rgba(0, 0, 0, 0) 71%
       );
     opacity: 0.7;
     content: '';
@@ -275,19 +275,6 @@
     & .ChatMessageText {
       background: var(--color-gray-2);
       border-radius: 10px 10px 10px 0;
-    }
-  }
-
-  @media (width <= 375px) {
-    & .ChatMessageText,
-    &.ChatMessageBot .ChatMessageText {
-      border-radius: 10px;
-    }
-
-    &,
-    &.ChatMessageBot {
-      flex-direction: column;
-      align-items: start;
     }
   }
 }

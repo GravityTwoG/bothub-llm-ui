@@ -5,9 +5,11 @@ import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
 import { useState } from 'react';
 import { clsx } from 'clsx';
 import { useClickAway } from '@uidotdev/usehooks';
+import { useDelayedBoolean } from '@/app/hooks/useDelayedFalse';
 
 export const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const delayedIsOpen = useDelayedBoolean(isOpen);
 
   const ref = useClickAway<HTMLUListElement>((e) => {
     if (e.target instanceof HTMLElement || e.target instanceof SVGElement) {
@@ -33,8 +35,14 @@ export const LanguageSelector = () => {
         />
       </button>
 
-      {isOpen && (
-        <ul ref={ref} className={classes.LanguageSelectorDropdown}>
+      {(isOpen || delayedIsOpen) && (
+        <ul
+          ref={ref}
+          className={clsx(
+            classes.LanguageSelectorDropdown,
+            isOpen && delayedIsOpen && classes.Open
+          )}
+        >
           <li>
             <button>RU</button>
           </li>

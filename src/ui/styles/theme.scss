@@ -123,14 +123,20 @@
   src: url('../fonts/IBM Plex Sans/IBMPlexSans-Regular.ttf') format('truetype');
 }
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   font-weight: normal;
   font-family: 'IBM Plex Sans', sans-serif;
   background-color: var(--color-background);
+  scrollbar-gutter: stable both-edges;
 }
 
 .custom-scrollbar {
-  overflow-y: auto;
+  overflow: auto;
   scroll-behavior: smooth;
 }
 

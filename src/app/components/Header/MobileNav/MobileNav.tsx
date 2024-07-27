@@ -7,6 +7,7 @@ import { NavItemType, SubNavItems } from '../HeaderNav/HeaderNav';
 
 import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
+import { useDelayedBoolean } from '@/app/hooks/useDelayedFalse';
 
 export type MobileNavProps = {
   navItems: NavItemType[];
@@ -15,24 +16,27 @@ export type MobileNavProps = {
 };
 
 export const MobileNav = ({ navItems, isOpen, children }: MobileNavProps) => {
-  if (!isOpen) {
-    return null;
-  }
+  const delayedIsOpen = useDelayedBoolean(isOpen);
 
   return (
-    <nav className={classes.MobileNav}>
-      <style>{'body { overflow: hidden; }'}</style>
-
-      <ul>
-        {navItems.map((item, idx) => (
-          <NavItem key={idx} link={item.link} subNavItems={item.subNavItems}>
-            {item.title}
-          </NavItem>
-        ))}
-      </ul>
-
-      {children}
-    </nav>
+    (isOpen || delayedIsOpen) && (
+      <nav
+        className={clsx(
+          classes.MobileNav,
+          isOpen && delayedIsOpen && classes.Open
+        )}
+      >
+        <style>{'html > body { overflow: hidden!important; }'}</style>
+        <ul>
+          {navItems.map((item, idx) => (
+            <NavItem key={idx} link={item.link} subNavItems={item.subNavItems}>
+              {item.title}
+            </NavItem>
+          ))}
+        </ul>
+        {children}
+      </nav>
+    )
   );
 };
 

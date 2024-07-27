@@ -6,6 +6,7 @@ import classes from './header-nav.module.scss';
 
 import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
+import { useDelayedBoolean } from '@/app/hooks/useDelayedFalse';
 
 export type NavItemType = {
   link?: string;
@@ -51,6 +52,7 @@ type NavItemProps = {
 
 const NavItem = (props: NavItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const delayedIsOpen = useDelayedBoolean(isOpen);
   const buttonId = useId();
 
   const ref = useClickAway<HTMLUListElement>((e) => {
@@ -86,11 +88,14 @@ const NavItem = (props: NavItemProps) => {
         {props.subNavItems ? <ArrowDown className={classes.ArrowDown} /> : null}
       </div>
 
-      {props.subNavItems !== undefined && isOpen && (
+      {props.subNavItems !== undefined && (isOpen || delayedIsOpen) && (
         <SubNavItems
           subNavItems={props.subNavItems}
           ref={ref}
-          className={classes.SubNavFloating}
+          className={clsx(
+            classes.SubNavFloating,
+            isOpen && delayedIsOpen && classes.Open
+          )}
         />
       )}
     </li>

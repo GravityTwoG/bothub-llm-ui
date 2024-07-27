@@ -53,7 +53,7 @@ export const Header = () => {
   }, [isDesktop]);
 
   return (
-    <div className={classes.HeaderWrapper}>
+    <header className={classes.HeaderWrapper}>
       <div className={classes.HeaderPlaceholder}></div>
       <div className={classes.Header}>
         <Container className={classes.HeaderContent}>
@@ -92,6 +92,6 @@ export const Header = () => {
           </div>
         </Container>
       </div>
-    </div>
+    </header>
   );
 };
