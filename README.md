@@ -1,5 +1,7 @@
 # BotHub - тестовое задание
 
+Использовались: React, TypeScript, Next.js, react-markdown, shiki.
+
 - Верстка на основе макета
 - Есть рендер markdown и подсветка синтаксиса
 - Поддержка многострочного ввода
@@ -7,6 +9,8 @@
 - Для обращения к API используется api handler nextjs, поэтому API KEY не утекает на клиент
 
 ![](./preview.png)
+
+![](./chat.png)
 
 ## React + TypeScript + Vite
 
