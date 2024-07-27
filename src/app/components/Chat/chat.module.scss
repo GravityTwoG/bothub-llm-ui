@@ -1,6 +1,7 @@
 .ChatWrapper {
   position: relative;
   z-index: 1;
+  min-width: 0;
   max-width: 100%;
 
   &::before {
@@ -44,7 +45,11 @@
   align-items: stretch;
   justify-content: stretch;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
   height: 100%;
+
   background:
     linear-gradient(var(--color-gray-4), var(--color-gray-4)) padding-box,
     linear-gradient(
@@ -73,6 +78,7 @@
   justify-content: flex-start;
   padding: 16px var(--padding);
   border-bottom: 1px solid #374151;
+  max-width: 100%;
 
   .ChatIcon {
     width: 50px;
@@ -159,13 +165,19 @@
 
 .ChatContent {
   position: relative;
+  flex: 1 1;
+
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
+
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
   height: 100%;
+
   padding-bottom: var(--padding);
   overflow: hidden;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
@@ -201,8 +213,10 @@
 
 .ChatMessages {
   position: relative;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   height: 0;
   min-height: 395px;
   max-height: calc(100vh - 600px);
@@ -218,27 +232,33 @@
     align-items: flex-end;
     justify-content: flex-start;
     width: 100%;
+    min-width: 0;
     max-width: 100%;
     list-style: none;
-  }
 
-  & .ChatMessage:first-child {
-    margin-top: 18px;
-  }
+    & .ChatMessage:first-child {
+      margin-top: 18px;
+    }
 
-  & .ChatMessage:last-child {
-    margin-bottom: 18px;
+    & .ChatMessage:last-child {
+      margin-bottom: 18px;
+    }
   }
 }
 
 .ChatMessage {
+  flex: 1;
   display: flex;
   flex-direction: row-reverse;
   gap: 9px;
   align-items: flex-start;
   align-self: end;
   justify-content: flex-start;
+
+  width: auto;
+  min-width: 0;
   max-width: 100%;
+
   text-align: left;
   word-wrap: break-word;
 
@@ -257,10 +277,6 @@
     opacity: 1;
   }
 
-  & * {
-    word-break: break-word;
-  }
-
   & .ChatMessageAvatar {
     display: flex;
     align-items: center;
@@ -276,19 +292,48 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-width: 0;
+    max-width: 100%;
   }
 
   & .ChatMessageText {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
     padding: 14px 16px;
     background: var(--color-primary);
     border-radius: 10px 10px 0;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
 
     & li {
       margin-right: auto;
       list-style-position: inside;
+      font-size: var(--font-size-paragraph-sm);
+      line-height: var(--line-height-paragraph-sm);
+    }
+
+    & ol {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    & > * {
+      word-break: break-word;
+      white-space: pre-wrap;
+
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+
+      min-height: 0;
+      height: auto;
+      max-height: 100%;
+
+      margin-bottom: 8px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -352,12 +397,15 @@
       --default-border-color: var(--color-primary);
     }
   }
+
+  @media (width <= 670px) {
+    padding: 8px 12px;
+  }
 }
 
 .ChatFormInput {
   display: block;
   flex: 1;
-  padding: 12px 0;
   color: var(--color-text);
   font-weight: 500;
   font-size: var(--font-size-paragraph-sm);
@@ -365,6 +413,7 @@
   background: none;
   border: none;
   resize: none;
+  align-self: center;
 
   &::placeholder {
     color: var(--color-gray-1);

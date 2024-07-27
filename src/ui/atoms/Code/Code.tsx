@@ -14,9 +14,13 @@ const copiedStateMap = {
   null: '',
 };
 
-export type CodeProps = HTMLComponentsProps<'div'>;
+export type CodeProps = HTMLComponentsProps<'div'> & {
+  node?: unknown;
+};
 
-export const Code = ({ className, ...props }: CodeProps) => {
+// node
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const Code = ({ className, node, ...props }: CodeProps) => {
   const language = className?.split('-')[1];
 
   const [isCopied, setIsCopied] = useState<'success' | 'error' | 'null'>(
@@ -89,12 +93,14 @@ export const Code = ({ className, ...props }: CodeProps) => {
           </div>
         )}
 
-        <div
-          {...props}
-          children={undefined}
-          className={clsx(classes.CodeContent, className)}
-          dangerouslySetInnerHTML={{ __html: code }}
-        />
+        <div className={classes.CodeContentWrapper}>
+          <div
+            {...props}
+            children={undefined}
+            className={clsx(classes.CodeContent, className)}
+            dangerouslySetInnerHTML={{ __html: code }}
+          />
+        </div>
       </div>
     </CodeErrorBoundary>
   );

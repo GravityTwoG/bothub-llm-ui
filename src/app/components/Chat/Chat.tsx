@@ -15,7 +15,7 @@ import { Button } from '@/ui/atoms/Button/Button';
 import { ReactComponent as ChatAvatar } from '@/ui/assets/images/ChatAvatar.svg';
 import { ReactComponent as Send } from '@/ui/assets/icons/Send.svg';
 import { MessageList } from './Messages';
-import { useIsClient } from '@uidotdev/usehooks';
+import { useIsClient, useMediaQuery } from '@uidotdev/usehooks';
 
 const defaultMessages: MessageType[] = [
   { role: 'user', content: 'Привет бот.', id: crypto.randomUUID() },
@@ -150,13 +150,6 @@ const ChatOnServer = (props: ChatProps) => {
           messages={defaultMessages}
           className={props.messageListClassName}
         />
-
-        <ChatForm
-          input={''}
-          setInput={() => {}}
-          isPending={false}
-          onSend={async () => {}}
-        />
       </div>
     </div>
   );
@@ -172,13 +165,18 @@ type ChatFormProps = {
 const ChatForm = ({ input, setInput, isPending, onSend }: ChatFormProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  const isDesktop = useMediaQuery('(pointer: fine)');
+
   const onSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     await onSend();
     if (!textareaRef.current) return;
 
     textareaRef.current.style.height = 'auto';
-    setTimeout(() => textareaRef.current?.focus(), 0);
+
+    if (isDesktop) {
+      setTimeout(() => textareaRef.current?.focus(), 0);
+    }
   };
 
   const ref = useDegreesAnimation<HTMLFormElement>(4, isPending);
