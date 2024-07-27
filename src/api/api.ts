@@ -26,6 +26,10 @@ export const createCompletion = async (messages: Message[]) => {
 
   const json = await completion.json();
 
+  if (json.error) {
+    throw new Error(json.error.message);
+  }
+
   const message = json.choices[0].message as Message;
   message.id = json.id;
 

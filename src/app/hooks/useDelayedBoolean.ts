@@ -5,7 +5,7 @@ export const useDelayedBoolean = (value: boolean, delay = 150) => {
 
   useEffect(() => {
     if (value && !delayedValue) {
-      const timeout = setTimeout(() => setDelayedValue(true), 0);
+      const timeout = setTimeout(() => setDelayedValue(true), delay);
       return () => clearTimeout(timeout);
     }
 

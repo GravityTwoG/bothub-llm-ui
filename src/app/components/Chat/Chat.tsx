@@ -12,7 +12,7 @@ import { Button } from '@/ui/atoms/Button/Button';
 
 import ChatAvatar from '@/ui/assets/images/ChatAvatar.svg?react';
 import Send from '@/ui/icons/Send.svg?react';
-import { Message } from './Message';
+import { MessageList } from './Messages';
 
 const defaultMessages: MessageType[] = [
   { role: 'user', content: 'Привет бот.', id: crypto.randomUUID() },
@@ -25,6 +25,7 @@ const defaultMessages: MessageType[] = [
 
 export type ChatProps = {
   className?: string;
+  messageListClassName?: string;
 };
 
 export const Chat = (props: ChatProps) => {
@@ -50,15 +51,15 @@ export const Chat = (props: ChatProps) => {
       await addMessage(input);
     } catch (error) {
       setInput(input);
-      setError(`Ошибка отправки сообщения: ${error}`);
+      setError(`Произошла ошибка: ${error}`);
     }
   };
 
   const ref = useDegreesAnimation<HTMLDivElement>();
 
   return (
-    <div className={clsx(classes.ChatWrapper, props.className)}>
-      <div className={classes.Chat} ref={ref}>
+    <div className={clsx(classes.ChatWrapper)}>
+      <div className={clsx(classes.Chat, props.className)} ref={ref}>
         <div className={classes.ChatHeader}>
           <ChatAvatar className={classes.ChatIcon} />
 
@@ -77,6 +78,7 @@ export const Chat = (props: ChatProps) => {
               id={checkboxId}
               checked={isContextSaved}
               onChange={(e) => setIsContextSaved(e.target.checked)}
+              autoFocus
             />
             <label htmlFor={checkboxId}>
               <Paragraph size="sm">Сохранить контекст</Paragraph>
@@ -85,15 +87,10 @@ export const Chat = (props: ChatProps) => {
         </div>
 
         <div className={classes.ChatContent}>
-          <ul className={clsx(classes.ChatMessages, 'custom-scrollbar')}>
-            {messagesToShow.map((message) => (
-              <Message
-                key={message.id}
-                message={message.content}
-                user={message.role === 'user' ? 'You' : 'Bot'}
-              />
-            ))}
-          </ul>
+          <MessageList
+            messages={messagesToShow}
+            className={props.messageListClassName}
+          />
 
           {error && (
             <div className={classes.ErrorMessage}>

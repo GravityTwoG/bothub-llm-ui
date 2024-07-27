@@ -7,7 +7,7 @@ import { NavItemType, SubNavItems } from '../HeaderNav/HeaderNav';
 
 import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
 import { Paragraph } from '@/ui/atoms/Typography/Typography';
-import { useDelayedBoolean } from '@/app/hooks/useDelayedFalse';
+import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
 
 export type MobileNavProps = {
   navItems: NavItemType[];

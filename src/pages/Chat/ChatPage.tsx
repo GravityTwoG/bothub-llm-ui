@@ -7,7 +7,10 @@ export const ChatPage = () => {
   return (
     <div className={classes.ChatPage}>
       <Container>
-        <Chat className={classes.Chat} />
+        <Chat
+          className={classes.Chat}
+          messageListClassName={classes.MessageList}
+        />
       </Container>
     </div>
   );

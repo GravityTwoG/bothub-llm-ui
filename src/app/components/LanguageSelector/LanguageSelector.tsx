@@ -5,7 +5,7 @@ import ArrowDown from '@/ui/icons/ArrowDown.svg?react';
 import { useState } from 'react';
 import { clsx } from 'clsx';
 import { useClickAway } from '@uidotdev/usehooks';
-import { useDelayedBoolean } from '@/app/hooks/useDelayedFalse';
+import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
 
 export const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
