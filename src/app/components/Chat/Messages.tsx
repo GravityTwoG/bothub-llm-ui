@@ -6,7 +6,7 @@ import { Message as MessageType } from '@/api/api';
 
 import { useMeasure } from '@uidotdev/usehooks';
 import { useDelayedBoolean } from '@/app/hooks/useDelayedBoolean';
-import { LineNode, parseMessage } from './parseMessage';
+import { HTMLComponentsProps } from '@/ui/types';
 
 import {
   Paragraph,
@@ -16,10 +16,11 @@ import {
   H4,
   H5,
   H6,
-  Code,
 } from '@/ui/atoms/Typography/Typography';
+import { Code } from '@/ui/atoms/Code/Code';
 import User from '@/ui/icons/User.svg?react';
 import Gemini from '@/ui/icons/Gemini.svg?react';
+import Markdown from 'react-markdown';
 
 const MAX_DELAY = 500;
 const DELAY_PER_MESSAGE = 70;
@@ -121,43 +122,45 @@ export const Message = memo(({ message, user, mountDelay }: MessageProps) => {
         </Paragraph>
 
         <div className={classes.ChatMessageText}>
-          {parseMessage(message).map((line, index) => (
-            <Line key={index} line={line} />
-          ))}
+          <Markdown components={components}>{message}</Markdown>
         </div>
       </div>
     </li>
   );
 });
 
-const Line = memo(({ line }: { line: LineNode }) => {
-  if (line.type === 'h1') {
-    return <H1>{line.text}</H1>;
-  }
+type HTMLComponentsPropsWithoutRef<T extends keyof JSX.IntrinsicElements> =
+  Omit<HTMLComponentsProps<T>, 'ref'>;
 
-  if (line.type === 'h2') {
-    return <H2>{line.text}</H2>;
-  }
-
-  if (line.type === 'h3') {
-    return <H3>{line.text}</H3>;
-  }
-
-  if (line.type === 'h4') {
-    return <H4>{line.text}</H4>;
-  }
-
-  if (line.type === 'h5') {
-    return <H5>{line.text}</H5>;
-  }
-
-  if (line.type === 'h6') {
-    return <H6>{line.text}</H6>;
-  }
-
-  if (line.type === 'code') {
-    return <Code>{line.text}</Code>;
-  }
-
-  return <Paragraph size="sm">{line.text}</Paragraph>;
-});
+const components = {
+  p: (props: HTMLComponentsPropsWithoutRef<'p'>) => {
+    return (
+      <Paragraph
+        size="sm"
+        {...props}
+        className={clsx(props.className, classes.ChatMessageTextP)}
+      />
+    );
+  },
+  h1: (props: HTMLComponentsPropsWithoutRef<'h1'>) => {
+    return <H1 {...props} />;
+  },
+  h2: (props: HTMLComponentsPropsWithoutRef<'h2'>) => {
+    return <H2 {...props} />;
+  },
+  h3: (props: HTMLComponentsPropsWithoutRef<'h3'>) => {
+    return <H3 {...props} />;
+  },
+  h4: (props: HTMLComponentsPropsWithoutRef<'h4'>) => {
+    return <H4 {...props} />;
+  },
+  h5: (props: HTMLComponentsPropsWithoutRef<'h5'>) => {
+    return <H5 {...props} />;
+  },
+  h6: (props: HTMLComponentsPropsWithoutRef<'h6'>) => {
+    return <H6 {...props} />;
+  },
+  code: (props: HTMLComponentsPropsWithoutRef<'code'>) => {
+    return <Code {...props} />;
+  },
+};

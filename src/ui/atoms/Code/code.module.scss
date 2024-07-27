@@ -1,0 +1,59 @@
+.Code {
+  & .CodeLanguage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 8px;
+    background: var(--color-primary);
+    border-radius: 10px 10px 0 0;
+  }
+
+  & .CopyButton {
+    width: 20px;
+    height: 20px;
+    outline: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    --bg-color: var(--color-text);
+
+    & svg path {
+      transition: fill 0.2s ease-in-out;
+      fill: var(--bg-color);
+    }
+
+    &:hover {
+      --bg-color: var(--color-gray-2);
+    }
+
+    &:active {
+      scale: 0.9;
+    }
+
+    &.CopySuccess {
+      --bg-color: var(--color-success);
+    }
+
+    &.CopyFailed {
+      --bg-color: var(--color-danger);
+    }
+  }
+
+  & .CodeContent {
+    display: block;
+    padding: 8px;
+    overflow-x: auto;
+    font-size: var(--font-size-paragraph-sm);
+    font-family: monospace;
+    line-height: var(--line-height-paragraph-sm);
+    background: var(--color-gray-4);
+    border-radius: 10px;
+  }
+
+  & .CodeContent:nth-child(2) {
+    border-radius: 0 0 10px 10px;
+  }
+}

@@ -235,12 +235,14 @@
 }
 
 .ChatMessage {
+  align-self: end;
+
   display: flex;
   flex-direction: row-reverse;
-  gap: 10px;
   align-items: start;
-  align-self: end;
   justify-content: flex-start;
+  gap: 9px;
+  text-align: left;
   max-width: 100%;
   word-wrap: break-word;
 
@@ -287,6 +289,11 @@
     padding: 14px 16px;
     background: var(--color-primary);
     border-radius: 10px 10px 0;
+
+    & li {
+      list-style-position: inside;
+      margin-right: auto;
+    }
   }
 
   &.ChatMessageBot {
@@ -298,6 +305,10 @@
       border-radius: 10px 10px 10px 0;
     }
   }
+}
+
+.ChatMessageTextP {
+  white-space: pre-wrap;
 }
 
 .ErrorMessage {
