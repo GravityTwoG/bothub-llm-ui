@@ -74,7 +74,13 @@ export const Code = ({ className, node, ...props }: CodeProps) => {
 
   return (
     <CodeErrorBoundary>
-      <div className={clsx(classes.Code, className)}>
+      <div
+        className={clsx(
+          classes.Code,
+          className,
+          language ? classes.HasLang : null
+        )}
+      >
         {language && (
           <div className={classes.CodeLanguage}>
             <Paragraph size="sm" fontWeight="bold">

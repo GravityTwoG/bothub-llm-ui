@@ -225,7 +225,7 @@
   transition: height 0.7s ease-in-out;
   overscroll-behavior: contain;
 
-  & ul {
+  & > ul {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -309,9 +309,15 @@
       list-style-position: inside;
       font-size: var(--font-size-paragraph-sm);
       line-height: var(--line-height-paragraph-sm);
+      margin-bottom: 8px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
-    & ol {
+    & ol,
+    & ul {
       display: flex;
       flex-direction: column;
       gap: 8px;
